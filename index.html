@@ -22,7 +22,8 @@
   .lamina{min-height:100svh; scroll-snap-align:start; display:grid; grid-template-rows:auto 1fr auto;
           padding:1.5rem max(16px, env(safe-area-inset-right)) 1.25rem max(16px, env(safe-area-inset-left));
           max-width:1180px; margin:0 auto}
-  header{display:grid; grid-template-columns:3rem 1fr; gap:1rem}
+  header{display:grid; grid-template-columns:3rem 1fr auto; gap:1rem}
+  header .mail{color:var(--dim)}
   header{font-size:11px; letter-spacing:.02em}
   h1{font:inherit; margin:0}
   b{font-weight:700}
@@ -32,7 +33,7 @@
   .pie{display:grid; grid-template-columns:3rem 1fr auto; gap:1rem; border-top:1px solid var(--ink); padding-top:.5rem; font-size:13px}
   .cita{font-size:11px; letter-spacing:.02em}
   .sig{color:var(--dim)}
-  @media (max-width:600px){ header,.pie{grid-template-columns:2.5rem 1fr} .pie .sig{grid-column:2} }
+  @media (max-width:600px){ header,.pie{grid-template-columns:2.5rem 1fr} .pie .sig, header .mail{grid-column:2} }
 </style>
 </head>
 <body>
@@ -41,6 +42,7 @@
   <header>
     <span><b>6.51</b></span>
     <h1>Stephanie Forno</h1>
+    <a class="mail" href="mailto:stephaniefornorosas@gmail.com">stephaniefornorosas@gmail.com</a>
   </header>
   <figure>
     <img src="planta.jpg" alt="Planta de arquitectura del Centro Productivo Comunitario de Coihuín, Puerto Montt, 2020">
