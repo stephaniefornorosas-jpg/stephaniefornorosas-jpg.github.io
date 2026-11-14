@@ -2,36 +2,69 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>6.51 · Stephanie Forno, arquitecta</title>
 <meta name="description" content="6.51 · Stephanie Forno, arquitecta. Osorno, Chile.">
 <meta name="author" content="Stephanie Forno">
 <meta property="og:title" content="6.51 · Stephanie Forno, arquitecta">
-<meta property="og:image" content="planta.jpg">
+<meta property="og:image" content="https://stephaniefornorosas-jpg.github.io/planta.jpg">
 <style>
+  /* Recorrido de láminas: cada paso ocupa una pantalla. Hoy, solo grises. */
+  :root{ --ink:#111; --dim:#6b6b6b; --paper:#fff; --rule:#e4e4e4;
+         --font:"Helvetica Neue", Helvetica, Arial, sans-serif; }
   *{box-sizing:border-box}
-  html,body{margin:0; background:#fff; color:#111}
-  body{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:15px; line-height:1.4; -webkit-font-smoothing:antialiased}
-  .wrap{max-width:1180px; margin:0 auto; padding:1.5rem max(16px, env(safe-area-inset-right)) 3rem max(16px, env(safe-area-inset-left))}
-  header{display:grid; grid-template-columns:3rem 1fr; gap:1rem; margin-bottom:3rem}
+  html{scroll-snap-type:y proximity}
+  html,body{margin:0; background:var(--paper); color:var(--ink)}
+  body{font-family:var(--font); font-size:15px; line-height:1.4; -webkit-font-smoothing:antialiased}
+  a{color:inherit; text-decoration:none}
+  a:hover{text-decoration:underline; text-underline-offset:3px}
+
+  .lamina{min-height:100svh; scroll-snap-align:start; display:grid; grid-template-rows:auto 1fr auto;
+          padding:1.5rem max(16px, env(safe-area-inset-right)) 1.25rem max(16px, env(safe-area-inset-left));
+          max-width:1180px; margin:0 auto}
+  header{display:grid; grid-template-columns:3rem 1fr; gap:1rem}
+  h1{font:inherit; margin:0}
   b{font-weight:700}
-  .dim{color:#8a8a8a}
-  img{display:block; width:100%; height:auto}
-  figure{margin:0}
-  figcaption{display:grid; grid-template-columns:3rem 1fr; gap:1rem; padding-top:.5rem}
-  @media (max-width:600px){ header, figcaption{grid-template-columns:2.5rem 1fr} header{margin-bottom:2rem} }
+  .dim{color:var(--dim)}
+  figure{margin:0; align-self:center; padding-block:2rem}
+  figure img{display:block; width:100%; height:auto}
+  .pie{display:grid; grid-template-columns:3rem 1fr auto; gap:1rem; border-top:1px solid var(--ink); padding-top:.5rem; font-size:13px}
+  .cita{font-size:11px; letter-spacing:.02em}
+  .sig{color:var(--dim)}
+  @media (max-width:600px){ header,.pie{grid-template-columns:2.5rem 1fr} .pie .sig{grid-column:2} }
 </style>
 </head>
 <body>
-<div class="wrap">
+
+<section class="lamina" id="i">
   <header>
     <span><b>6.51</b></span>
-    <span>Stephanie Forno, arquitecta<br><span class="dim">Osorno, Chile</span></span>
+    <h1>Stephanie Forno, arquitecta<br><span class="dim">Osorno, Chile</span></h1>
   </header>
   <figure>
-    <img src="planta.jpg" alt="Planta de arquitectura del Centro Productivo Comunitario de Coihuín, Puerto Montt">
-    <figcaption><span></span><span>Centro Productivo Comunitario, Coihuín. Planta de arquitectura, 2020</span></figcaption>
+    <img src="planta.jpg" alt="Planta de arquitectura del Centro Productivo Comunitario de Coihuín, Puerto Montt, 2020">
   </figure>
-</div>
+  <div class="pie">
+    <span>I</span>
+    <span>Centro Productivo Comunitario, Coihuín, 2020<br><span class="cita dim">Cuadernos del Quehacer n.º 5, ULagos, 2024, pp. 38–39</span></span>
+    <a class="sig" href="#iii" aria-label="Ir a la lámina siguiente">↓</a>
+  </div>
+</section>
+
+<section class="lamina" id="iii">
+  <header>
+    <span><b>6.51</b></span>
+    <span class="dim">Coihuín, 2020</span>
+  </header>
+  <figure>
+    <img src="cuerpo.jpg" alt="Maqueta del Centro Productivo Comunitario de Coihuín, vista axonométrica" loading="lazy">
+  </figure>
+  <div class="pie">
+    <span>III</span>
+    <span>Maqueta</span>
+    <a class="sig" href="#i" aria-label="Volver al inicio">↑</a>
+  </div>
+</section>
+
 </body>
 </html>
