@@ -18,6 +18,22 @@
   .flechas{display:flex; gap:.25rem; font-size:var(--t2); color:var(--dim)}
   .flechas a{cursor:pointer; padding:.35rem .6rem}
   .flechas a[aria-current]{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
+
+  /* previa 15-11: arriba lo que se ofrece (contacto y objetos gdl); el carrusel de cortes baja, más chico */
+  main{gap:1.1rem}
+  .servicio{display:flex; gap:.9rem; align-items:baseline; font-size:16px; letter-spacing:.02em}
+  .servicio a{color:var(--ink); text-decoration:underline; text-decoration-color:var(--hair); text-underline-offset:5px}
+  .servicio a:hover{text-decoration-color:var(--ink)}
+  .servicio span{color:var(--dim)}
+  .pieza{margin-top:16svh}
+  .pieza svg{height:72px}
+
+  /* previa: menos tamaños; los palos chicos y finos bajo el corte */
+  .flechas{font-size:11px; letter-spacing:.18em; gap:.1rem}
+  .flechas a{padding:.3rem .45rem}
+  .ley{font-size:11px}
+  .pieza svg{height:88px}
+  .dato{font-size:12px}
 </style></head>
 <body>
 <div class="pliego fijo">
@@ -27,20 +43,20 @@
     <span class="menu"><a href="objetos.html">objetos</a> · <a href="cv.html">info</a> · <a href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51">contacto</a></span>
   </header>
   <main>
+    <p class="dim">arquitectura · BIM</p>
+    <p class="servicio"><a href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51">contacto</a><span>·</span><a href="objetos.html">objetos gdl</a></p>
+    <p class="dato"><a href="https://www.instagram.com/6.51__/" target="_blank" rel="noopener">instagram</a></p>
     <div class="pieza">
       <a id="ir"><svg id="g" viewBox="0 0 10 10"><line id="s"/><path id="p"/></svg></a>
       <p class="ley" id="ley"></p>
       <p class="flechas" id="fl"></p>
     </div>
-    <p class="dim">arquitectura · BIM</p>
-    <p class="dato"><a href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51">contacto</a> &nbsp;·&nbsp; 
-<a href="https://www.instagram.com/6.51__/" target="_blank" rel="noopener">instagram</a></p>
-    <p class="dato"><a href="objetos.html">objetos · descarga libre</a></p>
   </main>
   <!-- índice: debajo del contacto, en silencio. Los particulares entran cuando exista su cuaderno. -->
   <nav class="indice" aria-label="Proyectos">
     <div><span class="dim">universitarios</span><a href="onemi.html">ONEMI, 2018</a><a href="coihuin.html">CPC, 2020</a></div>
     <div><span class="dim">particulares</span><a href="casa.html">Casa, 2024</a></div>
+    <div><span class="dim">obra pública</span><a href="registro.html">Hogar Protegido, 2023</a></div>
   </nav>
 </div>
 <script src="gestos.js"></script>
@@ -54,7 +70,7 @@
     ley.textContent=x.a;
     const ir=document.getElementById('ir');   // pinchar el corte abre el cuaderno del proyecto, si ya existe
     if(x.enlace){ ir.href=x.enlace; ir.style.cursor='pointer'; } else { ir.removeAttribute('href'); ir.style.cursor='default'; }
-    fl.innerHTML='<a data-k="-1">←</a>'+GESTOS.map((_,j)=>`<a data-j="${j}"${j===i?' aria-current="true"':''}>${String(j+1).padStart(2,'0')}</a>`).join('')+'<a data-k="1">→</a>';
+    fl.innerHTML=GESTOS.map((_,j)=>`<a data-j="${j}"${j===i?' aria-current="true"':''}>${'|'.repeat(j+1)}</a>`).join('');
   }
   fl.addEventListener('click',e=>{ const a=e.target.closest('a'); if(!a) return;
     ver(a.dataset.j!==undefined ? +a.dataset.j : i + +a.dataset.k); });

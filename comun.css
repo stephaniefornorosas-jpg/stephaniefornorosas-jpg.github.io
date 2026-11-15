@@ -79,3 +79,11 @@ header + .burbuja{margin-top:var(--aire)}
 .nota span b{font-weight:400; color:var(--ink); margin-right:.45rem}
 .nota span a,.nota span i{font-style:normal; color:var(--dim); text-decoration:none}
 .nota span a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
+
+/* volver (15-11, accesibilidad): flecha discreta antes del nombre en las páginas interiores */
+header .volver{display:inline-block; min-width:24px; min-height:24px; margin-right:.5rem; padding:.35rem .5rem .35rem 0; color:var(--dim); text-decoration:none}
+header .volver:hover{color:var(--ink)}
+header a:focus-visible{color:var(--ink); outline:1px solid var(--ink); outline-offset:2px}
+/* «6.51» = inicio: en las interiores lleva un hilo fijo (no solo al pasar el cursor; en el celular no hay hover) */
+header:has(.volver) .home b{text-decoration:underline; text-decoration-color:var(--hair); text-underline-offset:4px}
+header:has(.volver) .home:hover b{text-decoration-color:var(--ink)}
