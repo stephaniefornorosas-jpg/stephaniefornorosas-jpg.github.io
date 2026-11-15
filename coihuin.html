@@ -104,6 +104,16 @@
 @media (max-width:1000px){ .ficha ol.clave{columns:2} .ficha ul.bib{columns:1} }
 @media (max-width:600px){ .ficha{margin-top:9svh} .ficha .enc,.ficha .kw{margin-bottom:2.75rem} .ficha ol.clave{columns:1; margin-bottom:2.75rem}
   .ficha ol.clave li{margin-bottom:1.35rem} }
+
+/* clave codificada (15-11): una línea, el número, una palabra y la fuente en clave */
+.ficha{margin:9svh 0 0; color:var(--dim)}
+.ficha ol.clave{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; font-size:11px; letter-spacing:.03em; columns:auto}
+.ficha ol.clave li{display:inline-flex; align-items:baseline; gap:.1rem; margin:0; color:var(--dim); transition:color .25s}
+.ficha ol.clave li .n{margin-right:.35rem; font-variant-numeric:tabular-nums}
+.ficha ol.clave li a,.ficha ol.clave li i{font-style:normal; color:#9a9a9a; margin-left:.35rem; text-decoration:none}
+.ficha ol.clave li a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
+.ficha ol.clave li.sel{color:var(--ink)}
+
 </style>
 
 <meta property="og:type" content="website">
@@ -128,28 +138,7 @@
   <figure class="maqueta burbuja" id="maqueta" data-modo="encender" data-base="burbuja/m0.jpg" data-nitida="burbuja/m1.jpg" data-ratio="0.5625"
           role="img" aria-label="Maqueta del CPC, vista axonométrica"><canvas></canvas></figure>
 
-  <section class="ficha" aria-label="Notas de la lámina">
-<p class="enc">Planta de título, 2020, releída en 2026. Los números repiensan el proyecto como obra de exploración: cada uno marca un proceso que faltó y su nota declara la hipótesis, el fundamento y la fuente.</p>
-<h2>Clave</h2>
-<ol class="clave">
-<li data-n="1"><span class="n">1</span><span><b>Auditorio.</b> La cubierta de 2020 es facetada, con limahoyas, membrana asfáltica y 20 mm de poliestireno. Hipótesis: pocos planos, alero profundo y luz cenital en la cumbrera, nunca en limahoya, contra lluvia y condensación.<span class="c">Forno 2020, lám. 15</span></span></li>
-<li data-n="2"><span class="n">2</span><span><b>Cambio de materialidad.</b> Bajo la pleamar, masa estereotómica: pilote y cabezal. Sobre ella, armazón de piezas reemplazables con aislación continua y revestimiento ventilado ante la niebla salina. En 2020 el hormigón facetado estaba arriba.<span class="c">Frampton 1995</span></span></li>
-<li data-n="3"><span class="n">3</span><span><b>Secado.</b> Cota de piso referida al nivel de reducción de sondas: pleamar máxima de la estación SHOA más revancha. Bajo esa cota, solo pilotes; el agua pasa y la planicie intermareal no se rellena.<span class="c">SHOA s. f., Pub. 3009</span></span></li>
-<li data-n="4"><span class="n">4</span><span><b>Lavado.</b> Recinto húmedo propio entre andén y secado: piso impermeable con pendiente a desagüe, decantador de arena y aire que no pase de la zona sucia a la limpia.<span class="c">MINSAL 1996, arts. 25 a y 35</span></span></li>
-<li data-n="5"><span class="n">5</span><span><b>Paso.</b> En 2020 el pelillo seco cruzaba a la intemperie entre secado y elaboración. Hipótesis: una sola línea techada del mar a la tierra, con flujo ordenado desde la materia prima hasta el producto.<span class="c">MINSAL 1996, arts. 24 y 63</span></span></li>
-<li data-n="6"><span class="n">6</span><span><b>Elaboración.</b> Los dos baños de 2020 abren directo a las salas de elaboración. Se reubican tras un filtro sanitario con camarín y lavamanos, sin comunicación directa con la zona de manipulación.<span class="c">MINSAL 1996, arts. 32 y 33</span></span></li>
-</ol>
-<p class="kw"><span>Palabras clave</span> &nbsp;inflexión · contraste · habitar el intermareal · estereotomía y tectónica · pelillo (<i>Gracilaria chilensis</i>) · flujo húmedo-seco-limpio · algas → biología → Haeckel (<i>Kunstformen der Natur</i>, 1904) → quiebre → fisura</p>
-<h2>Bibliografía</h2>
-<ul class="bib">
-<li>Forno, Stephanie. 2020. «Centro Productivo Comunitario (CPC)». Proyecto de título, lám. 15 (escantillón). Publicado en CQ N.º 05, cuadernosarq, Universidad de Los Lagos, 2024.<a href="https://sites.google.com/ulagos.cl/cuadernosarq/inicio" target="_blank" rel="noopener" title="https://sites.google.com/ulagos.cl/cuadernosarq/inicio">sites.google.com ↗</a></li>
-<li>Frampton, Kenneth. 1995. <i>Studies in Tectonic Culture: The Poetics of Construction in Nineteenth and Twentieth Century Architecture</i>. MIT Press.</li>
-<li>Haeckel, Ernst. 1904. <i>Kunstformen der Natur</i>. Bibliographisches Institut. Ejemplar digital en Biodiversity Heritage Library.<a href="https://www.biodiversitylibrary.org/bibliography/87040" target="_blank" rel="noopener" title="https://www.biodiversitylibrary.org/bibliography/87040">biodiversitylibrary.org ↗</a></li>
-<li>McHugh, Dennis J. 2003. <i>A Guide to the Seaweed Industry</i>. FAO Fisheries Technical Paper 441. FAO.<a href="https://www.fao.org/4/y4765e/y4765e00.htm" target="_blank" rel="noopener" title="https://www.fao.org/4/y4765e/y4765e00.htm">fao.org ↗</a></li>
-<li>Ministerio de Salud (MINSAL). 1996. Decreto 977, Reglamento Sanitario de los Alimentos. Publicado el 13-05-1997; versión del 19-06-2026.<a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener" title="https://www.bcn.cl/leychile/navegar?idNorma=71271">bcn.cl ↗</a></li>
-<li>Rivas, Jorge, Alejandra Núñez, Francisca Erazo, Francisco Castañeda, Matías Araya, Andrés Meynard y Loretto Contreras-Porcia. 2021. «Indoor Culture Scaling of <i>Gracilaria chilensis</i> (Florideophyceae, Rhodophyta): The Effects of Nutrients by Means of Different Culture Media». <i>Revista de Biología Marina y Oceanografía</i> 56 (3).<a href="https://doi.org/10.22370/rbmo.2021.56.3.3180" target="_blank" rel="noopener" title="https://doi.org/10.22370/rbmo.2021.56.3.3180">doi.org ↗</a></li>
-<li>Servicio Hidrográfico y Oceanográfico de la Armada (SHOA). s. f. <i>Tablas de marea de la costa de Chile</i>, Pub. 3009, y pronóstico de mareas en línea.<a href="https://www.shoa.cl/php/mareas.php" target="_blank" rel="noopener" title="https://www.shoa.cl/php/mareas.php">shoa.cl ↗</a></li>
-</ul></section>
+  <section class="ficha" aria-label="Clave de la lámina"><ol class="clave"><li data-n="1" tabindex="0"><span class="n">1</span>cubierta<a href="https://sites.google.com/ulagos.cl/cuadernosarq/inicio" target="_blank" rel="noopener">Forno·20·15</a></li><li data-n="2" tabindex="0"><span class="n">2</span>materia<i>Frampton·95</i></li><li data-n="3" tabindex="0"><span class="n">3</span>cota<a href="https://www.shoa.cl/php/mareas.php" target="_blank" rel="noopener">SHOA·3009</a></li><li data-n="4" tabindex="0"><span class="n">4</span>lavado<a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·25·35</a></li><li data-n="5" tabindex="0"><span class="n">5</span>paso<a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·24·63</a></li><li data-n="6" tabindex="0"><span class="n">6</span>filtro<a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·32·33</a></li></ol></section>
 
   <div class="pie">
     <span></span>

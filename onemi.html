@@ -87,6 +87,16 @@
 @media (max-width:1000px){ .ficha ol.clave{columns:2} .ficha ul.bib{columns:1} }
 @media (max-width:600px){ .ficha{margin-top:9svh} .ficha .enc,.ficha .kw{margin-bottom:2.75rem} .ficha ol.clave{columns:1; margin-bottom:2.75rem}
   .ficha ol.clave li{margin-bottom:1.35rem} }
+
+/* clave codificada (15-11): una línea, el número, una palabra y la fuente en clave */
+.ficha{margin:9svh 0 0; color:var(--dim)}
+.ficha ol.clave{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; font-size:11px; letter-spacing:.03em; columns:auto}
+.ficha ol.clave li{display:inline-flex; align-items:baseline; gap:.1rem; margin:0; color:var(--dim); transition:color .25s}
+.ficha ol.clave li .n{margin-right:.35rem; font-variant-numeric:tabular-nums}
+.ficha ol.clave li a,.ficha ol.clave li i{font-style:normal; color:#9a9a9a; margin-left:.35rem; text-decoration:none}
+.ficha ol.clave li a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
+.ficha ol.clave li.sel{color:var(--ink)}
+
 </style>
 
 <meta property="og:type" content="website">
@@ -108,25 +118,7 @@
   <figure class="maqueta burbuja" id="maqueta" data-base="burbuja/o0.jpg" data-nitida="burbuja/o1.jpg" data-ratio="0.6336"
           role="img" aria-label="ONEMI, 2018, vista exterior"><canvas></canvas><i class="nota" data-n="1" style="left:33.0%;top:30.0%" tabindex="0" role="button" aria-label="Nota 1, Sala COE">1</i><i class="nota" data-n="2" style="left:17.0%;top:43.0%" tabindex="0" role="button" aria-label="Nota 2, Informar">2</i><i class="nota" data-n="3" style="left:36.0%;top:64.0%" tabindex="0" role="button" aria-label="Nota 3, Acopiar">3</i><i class="nota" data-n="4" style="left:55.0%;top:34.0%" tabindex="0" role="button" aria-label="Nota 4, Atención constante">4</i><i class="nota" data-n="5" style="left:62.0%;top:55.0%" tabindex="0" role="button" aria-label="Nota 5, Doble piel">5</i></figure>
 
-  <section class="ficha" aria-label="Notas de la lámina">
-<p class="enc">Taller, 2018, releído en 2026. El proyecto partió del funcionamiento de una oficina de emergencia, no de una forma: operar, informar y acopiar, con el exterior bajo atención constante. Los números siguen ese programa y su norma.</p>
-<h2>Clave</h2>
-<ol class="clave">
-<li data-n="1"><span class="n">1</span><span><b>Sala COE.</b> Sala de operaciones que no se detiene: energía y comunicaciones de respaldo, muro de visualización de la información y emplazamiento evaluado frente a las amenazas del sitio.<span class="c">FEMA 2022, 17, 20, 26</span></span></li>
-<li data-n="2"><span class="n">2</span><span><b>Informar.</b> Recinto de prensa e información pública con acceso propio, separado de la sala de operaciones: quien informa no atraviesa el lugar donde se decide.<span class="c">FEMA 2022, 5, 17</span></span></li>
-<li data-n="3"><span class="n">3</span><span><b>Acopiar.</b> Bodega de acopio con carga a nivel de calle, separada del acceso público, y reserva de agua y alimento para operar si el edificio queda aislado.<span class="c">FEMA 2022, 22</span></span></li>
-<li data-n="4"><span class="n">4</span><span><b>Atención constante.</b> La alerta es «un estado de monitoreo y atención permanente». El volumen superior vidriado mira la ruta a través de la piel: vigila el exterior sin exponer el interior.<span class="c">Ley 21.364 2021, arts. 3 b y 38</span></span></li>
-<li data-n="5"><span class="n">5</span><span><b>Doble piel.</b> Piel plegada de lamas, separada del muro cortina: esconde la operación y la protege del sol, la lluvia y el viento. Abierta da sombra; para calentar la cámara necesitaría vidrio exterior.<span class="c">Poirazis 2004</span></span></li>
-</ol>
-<p class="kw"><span>Palabras clave</span> &nbsp;centro de operaciones de emergencia (COE) · monitoreo y atención permanente · informar y acopiar · doble piel · muro cortina · vigilancia del territorio</p>
-<h2>Bibliografía</h2>
-<ul class="bib">
-<li>Chile. 1974. Decreto Ley 369, crea la Oficina Nacional de Emergencia. Publicado el 22-03-1974; derogado por la Ley 21.364.<a href="https://www.leychile.cl/N?i=6027" target="_blank" rel="noopener" title="https://www.leychile.cl/N?i=6027">leychile.cl ↗</a></li>
-<li>Chile. 2021. Ley 21.364, establece el Sistema Nacional de Prevención y Respuesta ante Desastres y sustituye la ONEMI por el SENAPRED. Publicada el 07-08-2021.<a href="https://www.bcn.cl/leychile/navegar?idNorma=1163423" target="_blank" rel="noopener" title="https://www.bcn.cl/leychile/navegar?idNorma=1163423">bcn.cl ↗</a></li>
-<li>Federal Emergency Management Agency (FEMA). 2022. <i>National Incident Management System: Emergency Operations Center How-to Quick Reference Guide</i>. Octubre de 2022.<a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener" title="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf">fema.gov ↗</a></li>
-<li>Forno, Stephanie. 2018. «Dirección Regional ONEMI, Puerto Montt». Proyecto de taller. Publicado en Cuaderno N.º 01, Catálogo II MuestrARQ, 2020, pp. 30-31.</li>
-<li>Poirazis, Harris. 2004. <i>Double Skin Facades for Office Buildings: Literature Review</i>. Informe EBD-R--04/3. Lund University, División de Energía y Diseño de Edificios.<a href="https://lup.lub.lu.se/record/1026786" target="_blank" rel="noopener" title="https://lup.lub.lu.se/record/1026786">lup.lub.lu.se ↗</a></li>
-</ul></section>
+  <section class="ficha" aria-label="Clave de la lámina"><ol class="clave"><li data-n="1" tabindex="0"><span class="n">1</span>sala<a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22</a></li><li data-n="2" tabindex="0"><span class="n">2</span>informar<a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22·5</a></li><li data-n="3" tabindex="0"><span class="n">3</span>acopiar<a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22·22</a></li><li data-n="4" tabindex="0"><span class="n">4</span>vigilia<a href="https://www.bcn.cl/leychile/navegar?idNorma=1163423" target="_blank" rel="noopener">21.364·3b</a></li><li data-n="5" tabindex="0"><span class="n">5</span>doble piel<a href="https://lup.lub.lu.se/record/1026786" target="_blank" rel="noopener">Poirazis·04</a></li></ol></section>
 
   <div class="pie">
     <span></span>

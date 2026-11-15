@@ -87,6 +87,16 @@
 @media (max-width:1000px){ .ficha ol.clave{columns:2} .ficha ul.bib{columns:1} }
 @media (max-width:600px){ .ficha{margin-top:9svh} .ficha .enc,.ficha .kw{margin-bottom:2.75rem} .ficha ol.clave{columns:1; margin-bottom:2.75rem}
   .ficha ol.clave li{margin-bottom:1.35rem} }
+
+/* clave codificada (15-11): una línea, el número, una palabra y la fuente en clave */
+.ficha{margin:9svh 0 0; color:var(--dim)}
+.ficha ol.clave{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; font-size:11px; letter-spacing:.03em; columns:auto}
+.ficha ol.clave li{display:inline-flex; align-items:baseline; gap:.1rem; margin:0; color:var(--dim); transition:color .25s}
+.ficha ol.clave li .n{margin-right:.35rem; font-variant-numeric:tabular-nums}
+.ficha ol.clave li a,.ficha ol.clave li i{font-style:normal; color:#9a9a9a; margin-left:.35rem; text-decoration:none}
+.ficha ol.clave li a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
+.ficha ol.clave li.sel{color:var(--ink)}
+
 </style>
 
 <meta property="og:type" content="website">
@@ -108,27 +118,11 @@
   <figure class="maqueta burbuja" id="maqueta" data-base="burbuja/c0.jpg" data-nitida="burbuja/c1.jpg" data-ratio="0.6087"
           role="img" aria-label="Casa, 2024, planta regularizada"><canvas></canvas><i class="nota" data-n="1" style="left:19.1%;top:83.8%" tabindex="0" role="button" aria-label="Nota 1, Acceso">1</i><i class="nota" data-n="2" style="left:22.0%;top:77.0%" tabindex="0" role="button" aria-label="Nota 2, Ruta accesible">2</i><i class="nota" data-n="3" style="left:18.5%;top:65.5%" tabindex="0" role="button" aria-label="Nota 3, Mesón">3</i></figure>
 
-  <section class="ficha" aria-label="Notas de la lámina">
-<p class="enc">Encargo privado: vivienda con dos locales comerciales, regularizada como obra menor y aprobada por la DOM en 2024. Los números leen la planta como verificación de accesibilidad universal, punto por punto contra la norma.</p>
-<h2>Clave</h2>
-<ol class="clave">
-<li data-n="1"><span class="n">1</span><span><b>Acceso.</b> Puertas P-01 de 1,00 m hacia la vereda, para el paso libre mínimo de 0,90 m exigido en el ingreso a recintos con atención de público.<span class="c">MINVU 1992, art. 4.1.7 n.º 4</span></span></li>
-<li data-n="2"><span class="n">2</span><span><b>Ruta accesible.</b> Ruta continua desde el espacio público hasta cada mesón: 1,10 m mínimo al interior, 1,50 m en pasillos hacia atención de público y juntas de piso sin resalte sobre 0,5 cm.<span class="c">MINVU 1992, art. 4.1.7 n.º 1</span></span></li>
-<li data-n="3"><span class="n">3</span><span><b>Mesón.</b> Un mesón accesible por local: tramo de 1,20 m a 0,80 m de alto como máximo, 0,70 × 0,60 m libres bajo él y giro de Ø 1,50 m al frente.<span class="c">MINVU 1992, art. 4.1.7 n.º 5</span></span></li>
-<li><span class="n">4</span><span><b>Origen de la exigencia.</b> Estos requisitos entraron a la OGUC con el DS 50, que la ajustó a la Ley 20.422 sobre igualdad de oportunidades e inclusión social de personas con discapacidad.<span class="c">MINVU 2015</span></span></li>
-<li><span class="n">5</span><span><b>Color.</b> El color de la accesibilidad es el del Símbolo Internacional de Accesibilidad: blanco sobre Pantone 294 C. En pantalla, #002F6C es una aproximación sRGB sin valor normativo.<span class="c">MINVU 1992, art. 1.1.2; INN s. f.</span></span></li>
-</ol>
-<p class="kw"><span>Palabras clave</span> &nbsp;accesibilidad universal · ruta accesible · mesón accesible · regularización · obra menor · DS 50 · Símbolo Internacional de Accesibilidad</p>
-<h2>Bibliografía</h2>
-<ul class="bib">
-<li>Instituto Nacional de Normalización (INN). s. f. NCh 3180, Símbolo Internacional de Accesibilidad. Citada por la OGUC, art. 1.1.2.</li>
-<li>Ministerio de Vivienda y Urbanismo (MINVU). 1992. Decreto 47, Ordenanza General de Urbanismo y Construcciones. Art. 4.1.7, versión del 15-05-2023; art. 1.1.2.<a href="https://www.bcn.cl/leychile/navegar?idNorma=8201" target="_blank" rel="noopener" title="https://www.bcn.cl/leychile/navegar?idNorma=8201">bcn.cl ↗</a></li>
-<li>Ministerio de Vivienda y Urbanismo (MINVU). 2015. Decreto 50, modifica el DS 47 (OGUC) para actualizarla a la Ley 20.422. Promulgado el 21-09-2015; publicado el 04-03-2016.<a href="https://www.bcn.cl/leychile/navegar?idNorma=1088117" target="_blank" rel="noopener" title="https://www.bcn.cl/leychile/navegar?idNorma=1088117">bcn.cl ↗</a></li>
-</ul></section>
+  <section class="ficha" aria-label="Clave de la lámina"><ol class="clave"><li data-n="1" tabindex="0"><span class="n">1</span>acceso<a href="https://www.bcn.cl/leychile/navegar?idNorma=8201" target="_blank" rel="noopener">OGUC·4.1.7·4</a></li><li data-n="2" tabindex="0"><span class="n">2</span>ruta<a href="https://www.bcn.cl/leychile/navegar?idNorma=8201" target="_blank" rel="noopener">OGUC·4.1.7·1</a></li><li data-n="3" tabindex="0"><span class="n">3</span>mesón<a href="https://www.bcn.cl/leychile/navegar?idNorma=8201" target="_blank" rel="noopener">OGUC·4.1.7·5</a></li></ol></section>
 
   <div class="pie">
     <span></span>
-    <span>Casa, 2024<br><span class="cita">regularización y accesibilidad universal · sur de Chile · obra menor aprobada por la DOM, 2024</span></span>
+    <span>Casa, 2024<br><span class="cita">regularización</span></span>
     <a class="vuelta dim rotulo" href="coihuin_notas_pie.html">CPC, 2020 &rarr;</a>
   </div>
 </div>
