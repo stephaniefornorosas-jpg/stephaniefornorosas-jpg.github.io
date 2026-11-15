@@ -97,6 +97,15 @@
 .ficha ol.clave li a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
 .ficha ol.clave li.sel{color:var(--ink)}
 
+
+/* etiquetas escondidas (15-11): sin texto a la vista; la palabra y la fuente en clave aparecen al pasar o tocar */
+.nota span{display:none !important; position:absolute; left:24px; top:-6px; white-space:nowrap; padding:5px 8px; background:#fff;
+  border:1px solid #e2e2e2; font:400 11px/1.4 var(--font); color:var(--dim); letter-spacing:.03em; text-align:left; z-index:3}
+.nota.der span{left:auto; right:24px}
+.nota:hover span,.nota.abierta span,.nota.sel span,.nota:focus-visible span{display:block !important}
+.nota span b{display:inline; font-weight:400; color:var(--ink); margin-right:.45rem}
+.nota span a,.nota span i{font-style:normal; color:#9a9a9a; text-decoration:none}
+.nota span a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
 </style>
 
 <meta property="og:type" content="website">
@@ -116,9 +125,9 @@
   </header>
 
   <figure class="maqueta burbuja" id="maqueta" data-base="burbuja/o0.jpg" data-nitida="burbuja/o1.jpg" data-ratio="0.6336"
-          role="img" aria-label="ONEMI, 2018, vista exterior"><canvas></canvas><i class="nota" data-n="1" style="left:33.0%;top:30.0%" tabindex="0" role="button" aria-label="Nota 1, Sala COE">1</i><i class="nota" data-n="2" style="left:17.0%;top:43.0%" tabindex="0" role="button" aria-label="Nota 2, Informar">2</i><i class="nota" data-n="3" style="left:36.0%;top:64.0%" tabindex="0" role="button" aria-label="Nota 3, Acopiar">3</i><i class="nota" data-n="4" style="left:55.0%;top:34.0%" tabindex="0" role="button" aria-label="Nota 4, Atención constante">4</i><i class="nota" data-n="5" style="left:62.0%;top:55.0%" tabindex="0" role="button" aria-label="Nota 5, Doble piel">5</i></figure>
+          role="img" aria-label="ONEMI, 2018, vista exterior"><canvas></canvas><i class="nota" data-n="1" style="left:33.0%;top:30.0%" tabindex="0" role="button" aria-label="Nota 1, Sala COE">1<span><b>sala</b><a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22</a></span></i><i class="nota" data-n="2" style="left:17.0%;top:43.0%" tabindex="0" role="button" aria-label="Nota 2, Informar">2<span><b>informar</b><a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22·5</a></span></i><i class="nota" data-n="3" style="left:36.0%;top:64.0%" tabindex="0" role="button" aria-label="Nota 3, Acopiar">3<span><b>acopiar</b><a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22·22</a></span></i><i class="nota" data-n="4" style="left:55.0%;top:34.0%" tabindex="0" role="button" aria-label="Nota 4, Atención constante">4<span><b>vigilia</b><a href="https://www.bcn.cl/leychile/navegar?idNorma=1163423" target="_blank" rel="noopener">21.364·3b</a></span></i><i class="nota" data-n="5" style="left:62.0%;top:55.0%" tabindex="0" role="button" aria-label="Nota 5, Doble piel">5<span><b>doble piel</b><a href="https://lup.lub.lu.se/record/1026786" target="_blank" rel="noopener">Poirazis·04</a></span></i></figure>
 
-  <section class="ficha" aria-label="Clave de la lámina"><ol class="clave"><li data-n="1" tabindex="0"><span class="n">1</span>sala<a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22</a></li><li data-n="2" tabindex="0"><span class="n">2</span>informar<a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22·5</a></li><li data-n="3" tabindex="0"><span class="n">3</span>acopiar<a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener">FEMA·22·22</a></li><li data-n="4" tabindex="0"><span class="n">4</span>vigilia<a href="https://www.bcn.cl/leychile/navegar?idNorma=1163423" target="_blank" rel="noopener">21.364·3b</a></li><li data-n="5" tabindex="0"><span class="n">5</span>doble piel<a href="https://lup.lub.lu.se/record/1026786" target="_blank" rel="noopener">Poirazis·04</a></li></ol></section>
+  
 
   <div class="pie">
     <span></span>

@@ -114,6 +114,15 @@
 .ficha ol.clave li a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
 .ficha ol.clave li.sel{color:var(--ink)}
 
+
+/* etiquetas escondidas (15-11): sin texto a la vista; la palabra y la fuente en clave aparecen al pasar o tocar */
+.nota span{display:none !important; position:absolute; left:24px; top:-6px; white-space:nowrap; padding:5px 8px; background:#fff;
+  border:1px solid #e2e2e2; font:400 11px/1.4 var(--font); color:var(--dim); letter-spacing:.03em; text-align:left; z-index:3}
+.nota.der span{left:auto; right:24px}
+.nota:hover span,.nota.abierta span,.nota.sel span,.nota:focus-visible span{display:block !important}
+.nota span b{display:inline; font-weight:400; color:var(--ink); margin-right:.45rem}
+.nota span a,.nota span i{font-style:normal; color:#9a9a9a; text-decoration:none}
+.nota span a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
 </style>
 
 <meta property="og:type" content="website">
@@ -133,12 +142,12 @@
   </header>
 
   <figure class="planta burbuja" id="planta" data-base="burbuja/p0.jpg" data-nitida="burbuja/p1.jpg" data-ratio="0.4984"
-          role="img" aria-label="Planta del CPC, 2020"><canvas></canvas><i class="nota" data-n="1" style="left:25.0%;top:42.0%" tabindex="0" role="button" aria-label="Nota 1, Auditorio">1</i><i class="nota" data-n="2" style="left:48.0%;top:47.0%" tabindex="0" role="button" aria-label="Nota 2, Cambio de materialidad">2</i><i class="nota" data-n="3" style="left:62.0%;top:36.0%" tabindex="0" role="button" aria-label="Nota 3, Secado">3</i><i class="nota" data-n="4" style="left:64.0%;top:61.0%" tabindex="0" role="button" aria-label="Nota 4, Lavado">4</i><i class="nota" data-n="5" style="left:71.0%;top:50.0%" tabindex="0" role="button" aria-label="Nota 5, Paso">5</i><i class="nota" data-n="6" style="left:76.0%;top:23.0%" tabindex="0" role="button" aria-label="Nota 6, Elaboración">6</i></figure>
+          role="img" aria-label="Planta del CPC, 2020"><canvas></canvas><i class="nota" data-n="1" style="left:25.0%;top:42.0%" tabindex="0" role="button" aria-label="Nota 1, Auditorio">1<span><b>cubierta</b><a href="https://sites.google.com/ulagos.cl/cuadernosarq/inicio" target="_blank" rel="noopener">Forno·20·15</a></span></i><i class="nota" data-n="2" style="left:48.0%;top:47.0%" tabindex="0" role="button" aria-label="Nota 2, Cambio de materialidad">2<span><b>materia</b><i>Frampton·95</i></span></i><i class="nota" data-n="3" style="left:62.0%;top:36.0%" tabindex="0" role="button" aria-label="Nota 3, Secado">3<span><b>cota</b><a href="https://www.shoa.cl/php/mareas.php" target="_blank" rel="noopener">SHOA·3009</a></span></i><i class="nota" data-n="4" style="left:64.0%;top:61.0%" tabindex="0" role="button" aria-label="Nota 4, Lavado">4<span><b>lavado</b><a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·25·35</a></span></i><i class="nota" data-n="5" style="left:71.0%;top:50.0%" tabindex="0" role="button" aria-label="Nota 5, Paso">5<span><b>paso</b><a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·24·63</a></span></i><i class="nota" data-n="6" style="left:76.0%;top:23.0%" tabindex="0" role="button" aria-label="Nota 6, Elaboración">6<span><b>filtro</b><a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·32·33</a></span></i></figure>
   <div class="giro" aria-hidden="true"></div>
   <figure class="maqueta burbuja" id="maqueta" data-modo="encender" data-base="burbuja/m0.jpg" data-nitida="burbuja/m1.jpg" data-ratio="0.5625"
           role="img" aria-label="Maqueta del CPC, vista axonométrica"><canvas></canvas></figure>
 
-  <section class="ficha" aria-label="Clave de la lámina"><ol class="clave"><li data-n="1" tabindex="0"><span class="n">1</span>cubierta<a href="https://sites.google.com/ulagos.cl/cuadernosarq/inicio" target="_blank" rel="noopener">Forno·20·15</a></li><li data-n="2" tabindex="0"><span class="n">2</span>materia<i>Frampton·95</i></li><li data-n="3" tabindex="0"><span class="n">3</span>cota<a href="https://www.shoa.cl/php/mareas.php" target="_blank" rel="noopener">SHOA·3009</a></li><li data-n="4" tabindex="0"><span class="n">4</span>lavado<a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·25·35</a></li><li data-n="5" tabindex="0"><span class="n">5</span>paso<a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·24·63</a></li><li data-n="6" tabindex="0"><span class="n">6</span>filtro<a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener">RSA·32·33</a></li></ol></section>
+  
 
   <div class="pie">
     <span></span>
