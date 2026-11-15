@@ -75,6 +75,37 @@
   @media (max-width:600px){ .menu{grid-column:1/-1; justify-self:start; margin-top:.35rem} }
 </style>
 <link rel="stylesheet" href="comun.css">
+<style>
+/* notas de lámina (15-11): clave aparte, estilo plancha de investigación. Misma jerarquía que comun.css: 13 / 12 / 11 px, gris #595959. */
+.nota{position:absolute; width:18px; height:18px; margin:-9px 0 0 -9px; border:1px solid #9a9a9a; border-radius:50%; background:#fff;
+      font:11px/16px var(--font); text-align:center; color:#595959; cursor:pointer; opacity:.78; pointer-events:auto; transition:opacity .25s, border-color .25s, color .25s}
+.nota::after{content:""; position:absolute; inset:-9px}
+.nota:hover,.nota.sel,.nota:focus-visible{opacity:1; border-color:#111; color:#111; outline:none}
+.nota span{display:none !important}
+.ficha{position:relative; z-index:1; margin:14svh 0 0; color:var(--dim)}
+.ficha h2{font:400 11px/1.5 var(--font); letter-spacing:.08em; color:var(--dim); margin:0 0 1rem}
+.ficha .enc{font-size:13px; line-height:1.55; color:var(--ink); max-width:64ch; margin:0 0 4rem}
+.ficha ol,.ficha ul{list-style:none; margin:0; padding:0}
+.ficha ol.clave{columns:3; column-gap:3rem; margin-bottom:4rem}
+.ficha ol.clave li{display:grid; grid-template-columns:1.6rem 1fr; break-inside:avoid; margin:0 0 1.5rem; font-size:12px; line-height:1.55; color:var(--dim); transition:color .25s}
+.ficha .n{font-size:11px; padding-top:.1rem; color:var(--dim); font-variant-numeric:tabular-nums; transition:color .25s}
+.ficha li b{font-weight:700; color:var(--ink)}
+.ficha .c{display:block; font-size:11px; color:var(--dim); margin-top:.2rem}
+.ficha li.sel{color:var(--ink)}
+.ficha li.sel .n{color:var(--ink); font-weight:700}
+.ficha li.sel .c{color:var(--dim)}
+.ficha li:focus-visible{outline:none}
+.ficha .kw{font-size:12px; line-height:1.6; color:var(--ink); max-width:64ch; margin:0 0 4rem}
+.ficha .kw span{color:var(--dim)}
+.ficha ul.bib{columns:2; column-gap:3rem; margin-bottom:2rem}
+.ficha ul.bib li{font-size:11px; line-height:1.55; color:var(--dim); break-inside:avoid; margin:0 0 .85rem; padding-left:1.6rem; text-indent:-1.6rem; overflow-wrap:anywhere}
+.ficha ul.bib a{display:inline-block; padding:.25rem 0; color:var(--ink); text-decoration:underline; text-decoration-color:#bdbdbd; text-underline-offset:3px; text-indent:0; margin-left:.35rem}
+.ficha ul.bib a:hover{text-decoration-color:var(--ink)}
+@media (max-width:1000px){ .ficha ol.clave{columns:2} .ficha ul.bib{columns:1} }
+@media (max-width:600px){ .ficha{margin-top:9svh} .ficha .enc,.ficha .kw{margin-bottom:2.75rem} .ficha ol.clave{columns:1; margin-bottom:2.75rem}
+  .ficha ol.clave li{margin-bottom:1.35rem} }
+</style>
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="6.51 · Stephanie Forno">
 <meta property="og:description" content="Arquitecta.">
@@ -92,15 +123,38 @@
   </header>
 
   <figure class="planta burbuja" id="planta" data-base="burbuja/p0.jpg" data-nitida="burbuja/p1.jpg" data-ratio="0.4984"
-          role="img" aria-label="Planta del CPC, 2020"><canvas></canvas><i class="nota" style="left:25.0%;top:42.0%">1<span><b>Auditorio</b>Cubierta en pocos planos, alero profundo y luz cenital en la cumbrera.</span></i><i class="nota" style="left:48.0%;top:47.0%">2<span><b>Cambio de materialidad</b>Envolvente con aislación continua y revestimientos que resistan el clima marino.</span></i><i class="nota der" style="left:62.0%;top:36.0%">3<span><b>Secado</b>Piso sobre la pleamar, apoyado en pilotes.</span></i><i class="nota der" style="left:64.0%;top:61.0%">4<span><b>Lavado</b>Pendiente y sumidero propios, separado del secado.</span></i><i class="nota der" style="left:71.0%;top:50.0%">5<span><b>Paso</b>Secado y elaboración unidos bajo techo.</span></i><i class="nota der" style="left:76.0%;top:23.0%">6<span><b>Elaboración</b>Baños con acceso por filtro sanitario.</span></i></figure>
+          role="img" aria-label="Planta del CPC, 2020"><canvas></canvas><i class="nota" data-n="1" style="left:25.0%;top:42.0%" tabindex="0" role="button" aria-label="Nota 1, Auditorio">1</i><i class="nota" data-n="2" style="left:48.0%;top:47.0%" tabindex="0" role="button" aria-label="Nota 2, Cambio de materialidad">2</i><i class="nota" data-n="3" style="left:62.0%;top:36.0%" tabindex="0" role="button" aria-label="Nota 3, Secado">3</i><i class="nota" data-n="4" style="left:64.0%;top:61.0%" tabindex="0" role="button" aria-label="Nota 4, Lavado">4</i><i class="nota" data-n="5" style="left:71.0%;top:50.0%" tabindex="0" role="button" aria-label="Nota 5, Paso">5</i><i class="nota" data-n="6" style="left:76.0%;top:23.0%" tabindex="0" role="button" aria-label="Nota 6, Elaboración">6</i></figure>
   <div class="giro" aria-hidden="true"></div>
   <figure class="maqueta burbuja" id="maqueta" data-modo="encender" data-base="burbuja/m0.jpg" data-nitida="burbuja/m1.jpg" data-ratio="0.5625"
           role="img" aria-label="Maqueta del CPC, vista axonométrica"><canvas></canvas></figure>
 
+  <section class="ficha" aria-label="Notas de la lámina">
+<p class="enc">Planta de título, 2020, releída en 2026. Los números repiensan el proyecto como obra de exploración: cada uno marca un proceso que faltó y su nota declara la hipótesis, el fundamento y la fuente.</p>
+<h2>Clave</h2>
+<ol class="clave">
+<li data-n="1"><span class="n">1</span><span><b>Auditorio.</b> La cubierta de 2020 es facetada, con limahoyas, membrana asfáltica y 20 mm de poliestireno. Hipótesis: pocos planos, alero profundo y luz cenital en la cumbrera, nunca en limahoya, contra lluvia y condensación.<span class="c">Forno 2020, lám. 15</span></span></li>
+<li data-n="2"><span class="n">2</span><span><b>Cambio de materialidad.</b> Bajo la pleamar, masa estereotómica: pilote y cabezal. Sobre ella, armazón de piezas reemplazables con aislación continua y revestimiento ventilado ante la niebla salina. En 2020 el hormigón facetado estaba arriba.<span class="c">Frampton 1995</span></span></li>
+<li data-n="3"><span class="n">3</span><span><b>Secado.</b> Cota de piso referida al nivel de reducción de sondas: pleamar máxima de la estación SHOA más revancha. Bajo esa cota, solo pilotes; el agua pasa y la planicie intermareal no se rellena.<span class="c">SHOA s. f., Pub. 3009</span></span></li>
+<li data-n="4"><span class="n">4</span><span><b>Lavado.</b> Recinto húmedo propio entre andén y secado: piso impermeable con pendiente a desagüe, decantador de arena y aire que no pase de la zona sucia a la limpia.<span class="c">MINSAL 1996, arts. 25 a y 35</span></span></li>
+<li data-n="5"><span class="n">5</span><span><b>Paso.</b> En 2020 el pelillo seco cruzaba a la intemperie entre secado y elaboración. Hipótesis: una sola línea techada del mar a la tierra, con flujo ordenado desde la materia prima hasta el producto.<span class="c">MINSAL 1996, arts. 24 y 63</span></span></li>
+<li data-n="6"><span class="n">6</span><span><b>Elaboración.</b> Los dos baños de 2020 abren directo a las salas de elaboración. Se reubican tras un filtro sanitario con camarín y lavamanos, sin comunicación directa con la zona de manipulación.<span class="c">MINSAL 1996, arts. 32 y 33</span></span></li>
+</ol>
+<p class="kw"><span>Palabras clave</span> &nbsp;inflexión · contraste · habitar el intermareal · estereotomía y tectónica · pelillo (<i>Gracilaria chilensis</i>) · flujo húmedo-seco-limpio · algas → biología → Haeckel (<i>Kunstformen der Natur</i>, 1904) → quiebre → fisura</p>
+<h2>Bibliografía</h2>
+<ul class="bib">
+<li>Forno, Stephanie. 2020. «Centro Productivo Comunitario (CPC)». Proyecto de título, lám. 15 (escantillón). Publicado en CQ N.º 05, cuadernosarq, Universidad de Los Lagos, 2024.<a href="https://sites.google.com/ulagos.cl/cuadernosarq/inicio" target="_blank" rel="noopener" title="https://sites.google.com/ulagos.cl/cuadernosarq/inicio">sites.google.com ↗</a></li>
+<li>Frampton, Kenneth. 1995. <i>Studies in Tectonic Culture: The Poetics of Construction in Nineteenth and Twentieth Century Architecture</i>. MIT Press.</li>
+<li>Haeckel, Ernst. 1904. <i>Kunstformen der Natur</i>. Bibliographisches Institut. Ejemplar digital en Biodiversity Heritage Library.<a href="https://www.biodiversitylibrary.org/bibliography/87040" target="_blank" rel="noopener" title="https://www.biodiversitylibrary.org/bibliography/87040">biodiversitylibrary.org ↗</a></li>
+<li>McHugh, Dennis J. 2003. <i>A Guide to the Seaweed Industry</i>. FAO Fisheries Technical Paper 441. FAO.<a href="https://www.fao.org/4/y4765e/y4765e00.htm" target="_blank" rel="noopener" title="https://www.fao.org/4/y4765e/y4765e00.htm">fao.org ↗</a></li>
+<li>Ministerio de Salud (MINSAL). 1996. Decreto 977, Reglamento Sanitario de los Alimentos. Publicado el 13-05-1997; versión del 19-06-2026.<a href="https://www.bcn.cl/leychile/navegar?idNorma=71271" target="_blank" rel="noopener" title="https://www.bcn.cl/leychile/navegar?idNorma=71271">bcn.cl ↗</a></li>
+<li>Rivas, Jorge, Alejandra Núñez, Francisca Erazo, Francisco Castañeda, Matías Araya, Andrés Meynard y Loretto Contreras-Porcia. 2021. «Indoor Culture Scaling of <i>Gracilaria chilensis</i> (Florideophyceae, Rhodophyta): The Effects of Nutrients by Means of Different Culture Media». <i>Revista de Biología Marina y Oceanografía</i> 56 (3).<a href="https://doi.org/10.22370/rbmo.2021.56.3.3180" target="_blank" rel="noopener" title="https://doi.org/10.22370/rbmo.2021.56.3.3180">doi.org ↗</a></li>
+<li>Servicio Hidrográfico y Oceanográfico de la Armada (SHOA). s. f. <i>Tablas de marea de la costa de Chile</i>, Pub. 3009, y pronóstico de mareas en línea.<a href="https://www.shoa.cl/php/mareas.php" target="_blank" rel="noopener" title="https://www.shoa.cl/php/mareas.php">shoa.cl ↗</a></li>
+</ul></section>
+
   <div class="pie">
     <span></span>
     <span>CPC, 2020<br><a class="cita dim" href="https://sites.google.com/ulagos.cl/cuadernosarq/inicio" target="_blank" rel="noopener">CQ N°05 ↗</a></span>
-    <a class="vuelta dim rotulo" href="onemi.html">ONEMI, 2018 &rarr;</a>
+    <a class="vuelta dim rotulo" href="onemi_notas_pie.html">ONEMI, 2018 &rarr;</a>
   </div>
   <svg class="ejes" id="ejes" aria-hidden="true"></svg>
 </div>
@@ -214,6 +268,26 @@ document.querySelectorAll('a.mail').forEach(a=>{
 const pl=document.getElementById('planta');
 pl.querySelectorAll('.nota').forEach(n=>n.addEventListener('click',e=>{ e.stopPropagation();
   pl.querySelectorAll('.nota.abierta').forEach(o=>{ if(o!==n) o.classList.remove('abierta'); }); n.classList.toggle('abierta'); }));
+</script>
+<script>
+// Notas de lámina: etiqueta y nota se destacan juntas (cursor, foco o toque).
+(function(){
+  const todos=[...document.querySelectorAll('.nota[data-n], .ficha li[data-n]')];
+  const marca=(n,v)=>document.querySelectorAll('[data-n="'+n+'"]').forEach(e=>e.classList.toggle('sel',v));
+  const limpia=()=>document.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+  const tactil=()=>matchMedia('(hover: none)').matches;
+  todos.forEach(e=>{ const n=e.dataset.n;
+    e.addEventListener('pointerenter',ev=>{ if(ev.pointerType==='mouse') marca(n,true); });
+    e.addEventListener('pointerleave',ev=>{ if(ev.pointerType==='mouse') marca(n,false); });
+    e.addEventListener('focus',()=>marca(n,true)); e.addEventListener('blur',()=>marca(n,false));
+  });
+  document.querySelectorAll('.nota[data-n]').forEach(e=>e.addEventListener('click',ev=>{ ev.stopPropagation();
+    if(!tactil()) return;
+    const n=e.dataset.n; limpia(); marca(n,true);
+    document.querySelector('.ficha li[data-n="'+n+'"]')?.scrollIntoView({behavior:'smooth',block:'center'}); }));
+  document.querySelectorAll('.ficha li[data-n]').forEach(e=>e.addEventListener('click',()=>{ if(!tactil()) return;
+    const n=e.dataset.n, ya=e.classList.contains('sel'); limpia(); if(!ya) marca(n,true); }));
+})();
 </script>
 <script src="contacto.js"></script>
 </body>

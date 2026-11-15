@@ -58,6 +58,37 @@
   @media (max-width:600px){ .menu{grid-column:1/-1; justify-self:start; margin-top:.35rem} }
 </style>
 <link rel="stylesheet" href="comun.css">
+<style>
+/* notas de lámina (15-11): clave aparte, estilo plancha de investigación. Misma jerarquía que comun.css: 13 / 12 / 11 px, gris #595959. */
+.nota{position:absolute; width:18px; height:18px; margin:-9px 0 0 -9px; border:1px solid #9a9a9a; border-radius:50%; background:#fff;
+      font:11px/16px var(--font); text-align:center; color:#595959; cursor:pointer; opacity:.78; pointer-events:auto; transition:opacity .25s, border-color .25s, color .25s}
+.nota::after{content:""; position:absolute; inset:-9px}
+.nota:hover,.nota.sel,.nota:focus-visible{opacity:1; border-color:#111; color:#111; outline:none}
+.nota span{display:none !important}
+.ficha{position:relative; z-index:1; margin:14svh 0 0; color:var(--dim)}
+.ficha h2{font:400 11px/1.5 var(--font); letter-spacing:.08em; color:var(--dim); margin:0 0 1rem}
+.ficha .enc{font-size:13px; line-height:1.55; color:var(--ink); max-width:64ch; margin:0 0 4rem}
+.ficha ol,.ficha ul{list-style:none; margin:0; padding:0}
+.ficha ol.clave{columns:3; column-gap:3rem; margin-bottom:4rem}
+.ficha ol.clave li{display:grid; grid-template-columns:1.6rem 1fr; break-inside:avoid; margin:0 0 1.5rem; font-size:12px; line-height:1.55; color:var(--dim); transition:color .25s}
+.ficha .n{font-size:11px; padding-top:.1rem; color:var(--dim); font-variant-numeric:tabular-nums; transition:color .25s}
+.ficha li b{font-weight:700; color:var(--ink)}
+.ficha .c{display:block; font-size:11px; color:var(--dim); margin-top:.2rem}
+.ficha li.sel{color:var(--ink)}
+.ficha li.sel .n{color:var(--ink); font-weight:700}
+.ficha li.sel .c{color:var(--dim)}
+.ficha li:focus-visible{outline:none}
+.ficha .kw{font-size:12px; line-height:1.6; color:var(--ink); max-width:64ch; margin:0 0 4rem}
+.ficha .kw span{color:var(--dim)}
+.ficha ul.bib{columns:2; column-gap:3rem; margin-bottom:2rem}
+.ficha ul.bib li{font-size:11px; line-height:1.55; color:var(--dim); break-inside:avoid; margin:0 0 .85rem; padding-left:1.6rem; text-indent:-1.6rem; overflow-wrap:anywhere}
+.ficha ul.bib a{display:inline-block; padding:.25rem 0; color:var(--ink); text-decoration:underline; text-decoration-color:#bdbdbd; text-underline-offset:3px; text-indent:0; margin-left:.35rem}
+.ficha ul.bib a:hover{text-decoration-color:var(--ink)}
+@media (max-width:1000px){ .ficha ol.clave{columns:2} .ficha ul.bib{columns:1} }
+@media (max-width:600px){ .ficha{margin-top:9svh} .ficha .enc,.ficha .kw{margin-bottom:2.75rem} .ficha ol.clave{columns:1; margin-bottom:2.75rem}
+  .ficha ol.clave li{margin-bottom:1.35rem} }
+</style>
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="6.51 · Stephanie Forno">
 <meta property="og:description" content="Arquitecta.">
@@ -75,12 +106,30 @@
   </header>
 
   <figure class="maqueta burbuja" id="maqueta" data-base="burbuja/c0.jpg" data-nitida="burbuja/c1.jpg" data-ratio="0.6087"
-          role="img" aria-label="Casa, 2024, planta regularizada"><canvas></canvas></figure>
+          role="img" aria-label="Casa, 2024, planta regularizada"><canvas></canvas><i class="nota" data-n="1" style="left:19.1%;top:83.8%" tabindex="0" role="button" aria-label="Nota 1, Acceso">1</i><i class="nota" data-n="2" style="left:22.0%;top:77.0%" tabindex="0" role="button" aria-label="Nota 2, Ruta accesible">2</i><i class="nota" data-n="3" style="left:18.5%;top:65.5%" tabindex="0" role="button" aria-label="Nota 3, Mesón">3</i></figure>
+
+  <section class="ficha" aria-label="Notas de la lámina">
+<p class="enc">Encargo privado: vivienda con dos locales comerciales, regularizada como obra menor y aprobada por la DOM en 2024. Los números leen la planta como verificación de accesibilidad universal, punto por punto contra la norma.</p>
+<h2>Clave</h2>
+<ol class="clave">
+<li data-n="1"><span class="n">1</span><span><b>Acceso.</b> Puertas P-01 de 1,00 m hacia la vereda, para el paso libre mínimo de 0,90 m exigido en el ingreso a recintos con atención de público.<span class="c">MINVU 1992, art. 4.1.7 n.º 4</span></span></li>
+<li data-n="2"><span class="n">2</span><span><b>Ruta accesible.</b> Ruta continua desde el espacio público hasta cada mesón: 1,10 m mínimo al interior, 1,50 m en pasillos hacia atención de público y juntas de piso sin resalte sobre 0,5 cm.<span class="c">MINVU 1992, art. 4.1.7 n.º 1</span></span></li>
+<li data-n="3"><span class="n">3</span><span><b>Mesón.</b> Un mesón accesible por local: tramo de 1,20 m a 0,80 m de alto como máximo, 0,70 × 0,60 m libres bajo él y giro de Ø 1,50 m al frente.<span class="c">MINVU 1992, art. 4.1.7 n.º 5</span></span></li>
+<li><span class="n">4</span><span><b>Origen de la exigencia.</b> Estos requisitos entraron a la OGUC con el DS 50, que la ajustó a la Ley 20.422 sobre igualdad de oportunidades e inclusión social de personas con discapacidad.<span class="c">MINVU 2015</span></span></li>
+<li><span class="n">5</span><span><b>Color.</b> El color de la accesibilidad es el del Símbolo Internacional de Accesibilidad: blanco sobre Pantone 294 C. En pantalla, #002F6C es una aproximación sRGB sin valor normativo.<span class="c">MINVU 1992, art. 1.1.2; INN s. f.</span></span></li>
+</ol>
+<p class="kw"><span>Palabras clave</span> &nbsp;accesibilidad universal · ruta accesible · mesón accesible · regularización · obra menor · DS 50 · Símbolo Internacional de Accesibilidad</p>
+<h2>Bibliografía</h2>
+<ul class="bib">
+<li>Instituto Nacional de Normalización (INN). s. f. NCh 3180, Símbolo Internacional de Accesibilidad. Citada por la OGUC, art. 1.1.2.</li>
+<li>Ministerio de Vivienda y Urbanismo (MINVU). 1992. Decreto 47, Ordenanza General de Urbanismo y Construcciones. Art. 4.1.7, versión del 15-05-2023; art. 1.1.2.<a href="https://www.bcn.cl/leychile/navegar?idNorma=8201" target="_blank" rel="noopener" title="https://www.bcn.cl/leychile/navegar?idNorma=8201">bcn.cl ↗</a></li>
+<li>Ministerio de Vivienda y Urbanismo (MINVU). 2015. Decreto 50, modifica el DS 47 (OGUC) para actualizarla a la Ley 20.422. Promulgado el 21-09-2015; publicado el 04-03-2016.<a href="https://www.bcn.cl/leychile/navegar?idNorma=1088117" target="_blank" rel="noopener" title="https://www.bcn.cl/leychile/navegar?idNorma=1088117">bcn.cl ↗</a></li>
+</ul></section>
 
   <div class="pie">
     <span></span>
     <span>Casa, 2024<br><span class="cita">regularización y accesibilidad universal · sur de Chile · obra menor aprobada por la DOM, 2024</span></span>
-    <a class="vuelta dim rotulo" href="coihuin.html">CPC, 2020 &rarr;</a>
+    <a class="vuelta dim rotulo" href="coihuin_notas_pie.html">CPC, 2020 &rarr;</a>
   </div>
 </div>
 <div class="visor" id="visor" aria-hidden="true"><canvas></canvas><span class="cerrar">cerrar ✕</span></div>
@@ -170,6 +219,26 @@ document.querySelectorAll('a.mail').forEach(a=>{
     try{ navigator.clipboard.writeText(d).then(()=>{ a.title='Copiado'; }); }catch(_){}
   });
 });
+</script>
+<script>
+// Notas de lámina: etiqueta y nota se destacan juntas (cursor, foco o toque).
+(function(){
+  const todos=[...document.querySelectorAll('.nota[data-n], .ficha li[data-n]')];
+  const marca=(n,v)=>document.querySelectorAll('[data-n="'+n+'"]').forEach(e=>e.classList.toggle('sel',v));
+  const limpia=()=>document.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+  const tactil=()=>matchMedia('(hover: none)').matches;
+  todos.forEach(e=>{ const n=e.dataset.n;
+    e.addEventListener('pointerenter',ev=>{ if(ev.pointerType==='mouse') marca(n,true); });
+    e.addEventListener('pointerleave',ev=>{ if(ev.pointerType==='mouse') marca(n,false); });
+    e.addEventListener('focus',()=>marca(n,true)); e.addEventListener('blur',()=>marca(n,false));
+  });
+  document.querySelectorAll('.nota[data-n]').forEach(e=>e.addEventListener('click',ev=>{ ev.stopPropagation();
+    if(!tactil()) return;
+    const n=e.dataset.n; limpia(); marca(n,true);
+    document.querySelector('.ficha li[data-n="'+n+'"]')?.scrollIntoView({behavior:'smooth',block:'center'}); }));
+  document.querySelectorAll('.ficha li[data-n]').forEach(e=>e.addEventListener('click',()=>{ if(!tactil()) return;
+    const n=e.dataset.n, ya=e.classList.contains('sel'); limpia(); if(!ya) marca(n,true); }));
+})();
 </script>
 <script src="contacto.js"></script>
 </body>

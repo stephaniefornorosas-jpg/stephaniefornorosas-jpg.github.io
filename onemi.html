@@ -58,6 +58,37 @@
   @media (max-width:600px){ .menu{grid-column:1/-1; justify-self:start; margin-top:.35rem} }
 </style>
 <link rel="stylesheet" href="comun.css">
+<style>
+/* notas de lámina (15-11): clave aparte, estilo plancha de investigación. Misma jerarquía que comun.css: 13 / 12 / 11 px, gris #595959. */
+.nota{position:absolute; width:18px; height:18px; margin:-9px 0 0 -9px; border:1px solid #9a9a9a; border-radius:50%; background:#fff;
+      font:11px/16px var(--font); text-align:center; color:#595959; cursor:pointer; opacity:.78; pointer-events:auto; transition:opacity .25s, border-color .25s, color .25s}
+.nota::after{content:""; position:absolute; inset:-9px}
+.nota:hover,.nota.sel,.nota:focus-visible{opacity:1; border-color:#111; color:#111; outline:none}
+.nota span{display:none !important}
+.ficha{position:relative; z-index:1; margin:14svh 0 0; color:var(--dim)}
+.ficha h2{font:400 11px/1.5 var(--font); letter-spacing:.08em; color:var(--dim); margin:0 0 1rem}
+.ficha .enc{font-size:13px; line-height:1.55; color:var(--ink); max-width:64ch; margin:0 0 4rem}
+.ficha ol,.ficha ul{list-style:none; margin:0; padding:0}
+.ficha ol.clave{columns:3; column-gap:3rem; margin-bottom:4rem}
+.ficha ol.clave li{display:grid; grid-template-columns:1.6rem 1fr; break-inside:avoid; margin:0 0 1.5rem; font-size:12px; line-height:1.55; color:var(--dim); transition:color .25s}
+.ficha .n{font-size:11px; padding-top:.1rem; color:var(--dim); font-variant-numeric:tabular-nums; transition:color .25s}
+.ficha li b{font-weight:700; color:var(--ink)}
+.ficha .c{display:block; font-size:11px; color:var(--dim); margin-top:.2rem}
+.ficha li.sel{color:var(--ink)}
+.ficha li.sel .n{color:var(--ink); font-weight:700}
+.ficha li.sel .c{color:var(--dim)}
+.ficha li:focus-visible{outline:none}
+.ficha .kw{font-size:12px; line-height:1.6; color:var(--ink); max-width:64ch; margin:0 0 4rem}
+.ficha .kw span{color:var(--dim)}
+.ficha ul.bib{columns:2; column-gap:3rem; margin-bottom:2rem}
+.ficha ul.bib li{font-size:11px; line-height:1.55; color:var(--dim); break-inside:avoid; margin:0 0 .85rem; padding-left:1.6rem; text-indent:-1.6rem; overflow-wrap:anywhere}
+.ficha ul.bib a{display:inline-block; padding:.25rem 0; color:var(--ink); text-decoration:underline; text-decoration-color:#bdbdbd; text-underline-offset:3px; text-indent:0; margin-left:.35rem}
+.ficha ul.bib a:hover{text-decoration-color:var(--ink)}
+@media (max-width:1000px){ .ficha ol.clave{columns:2} .ficha ul.bib{columns:1} }
+@media (max-width:600px){ .ficha{margin-top:9svh} .ficha .enc,.ficha .kw{margin-bottom:2.75rem} .ficha ol.clave{columns:1; margin-bottom:2.75rem}
+  .ficha ol.clave li{margin-bottom:1.35rem} }
+</style>
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="6.51 · Stephanie Forno">
 <meta property="og:description" content="Arquitecta.">
@@ -75,12 +106,32 @@
   </header>
 
   <figure class="maqueta burbuja" id="maqueta" data-base="burbuja/o0.jpg" data-nitida="burbuja/o1.jpg" data-ratio="0.6336"
-          role="img" aria-label="ONEMI, 2018, vista exterior"><canvas></canvas></figure>
+          role="img" aria-label="ONEMI, 2018, vista exterior"><canvas></canvas><i class="nota" data-n="1" style="left:33.0%;top:30.0%" tabindex="0" role="button" aria-label="Nota 1, Sala COE">1</i><i class="nota" data-n="2" style="left:17.0%;top:43.0%" tabindex="0" role="button" aria-label="Nota 2, Informar">2</i><i class="nota" data-n="3" style="left:36.0%;top:64.0%" tabindex="0" role="button" aria-label="Nota 3, Acopiar">3</i><i class="nota" data-n="4" style="left:55.0%;top:34.0%" tabindex="0" role="button" aria-label="Nota 4, Atención constante">4</i><i class="nota" data-n="5" style="left:62.0%;top:55.0%" tabindex="0" role="button" aria-label="Nota 5, Doble piel">5</i></figure>
+
+  <section class="ficha" aria-label="Notas de la lámina">
+<p class="enc">Taller, 2018, releído en 2026. El proyecto partió del funcionamiento de una oficina de emergencia, no de una forma: operar, informar y acopiar, con el exterior bajo atención constante. Los números siguen ese programa y su norma.</p>
+<h2>Clave</h2>
+<ol class="clave">
+<li data-n="1"><span class="n">1</span><span><b>Sala COE.</b> Sala de operaciones que no se detiene: energía y comunicaciones de respaldo, muro de visualización de la información y emplazamiento evaluado frente a las amenazas del sitio.<span class="c">FEMA 2022, 17, 20, 26</span></span></li>
+<li data-n="2"><span class="n">2</span><span><b>Informar.</b> Recinto de prensa e información pública con acceso propio, separado de la sala de operaciones: quien informa no atraviesa el lugar donde se decide.<span class="c">FEMA 2022, 5, 17</span></span></li>
+<li data-n="3"><span class="n">3</span><span><b>Acopiar.</b> Bodega de acopio con carga a nivel de calle, separada del acceso público, y reserva de agua y alimento para operar si el edificio queda aislado.<span class="c">FEMA 2022, 22</span></span></li>
+<li data-n="4"><span class="n">4</span><span><b>Atención constante.</b> La alerta es «un estado de monitoreo y atención permanente». El volumen superior vidriado mira la ruta a través de la piel: vigila el exterior sin exponer el interior.<span class="c">Ley 21.364 2021, arts. 3 b y 38</span></span></li>
+<li data-n="5"><span class="n">5</span><span><b>Doble piel.</b> Piel plegada de lamas, separada del muro cortina: esconde la operación y la protege del sol, la lluvia y el viento. Abierta da sombra; para calentar la cámara necesitaría vidrio exterior.<span class="c">Poirazis 2004</span></span></li>
+</ol>
+<p class="kw"><span>Palabras clave</span> &nbsp;centro de operaciones de emergencia (COE) · monitoreo y atención permanente · informar y acopiar · doble piel · muro cortina · vigilancia del territorio</p>
+<h2>Bibliografía</h2>
+<ul class="bib">
+<li>Chile. 1974. Decreto Ley 369, crea la Oficina Nacional de Emergencia. Publicado el 22-03-1974; derogado por la Ley 21.364.<a href="https://www.leychile.cl/N?i=6027" target="_blank" rel="noopener" title="https://www.leychile.cl/N?i=6027">leychile.cl ↗</a></li>
+<li>Chile. 2021. Ley 21.364, establece el Sistema Nacional de Prevención y Respuesta ante Desastres y sustituye la ONEMI por el SENAPRED. Publicada el 07-08-2021.<a href="https://www.bcn.cl/leychile/navegar?idNorma=1163423" target="_blank" rel="noopener" title="https://www.bcn.cl/leychile/navegar?idNorma=1163423">bcn.cl ↗</a></li>
+<li>Federal Emergency Management Agency (FEMA). 2022. <i>National Incident Management System: Emergency Operations Center How-to Quick Reference Guide</i>. Octubre de 2022.<a href="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf" target="_blank" rel="noopener" title="https://www.fema.gov/sites/default/files/documents/fema_eoc-quick-reference-guide.pdf">fema.gov ↗</a></li>
+<li>Forno, Stephanie. 2018. «Dirección Regional ONEMI, Puerto Montt». Proyecto de taller. Publicado en Cuaderno N.º 01, Catálogo II MuestrARQ, 2020, pp. 30-31.</li>
+<li>Poirazis, Harris. 2004. <i>Double Skin Facades for Office Buildings: Literature Review</i>. Informe EBD-R--04/3. Lund University, División de Energía y Diseño de Edificios.<a href="https://lup.lub.lu.se/record/1026786" target="_blank" rel="noopener" title="https://lup.lub.lu.se/record/1026786">lup.lub.lu.se ↗</a></li>
+</ul></section>
 
   <div class="pie">
     <span></span>
     <span>ONEMI, 2018</span>
-    <a class="vuelta dim rotulo" href="coihuin.html">CPC, 2020 &rarr;</a>
+    <a class="vuelta dim rotulo" href="coihuin_notas_pie.html">CPC, 2020 &rarr;</a>
   </div>
 </div>
 <div class="visor" id="visor" aria-hidden="true"><canvas></canvas><span class="cerrar">cerrar ✕</span></div>
@@ -170,6 +221,26 @@ document.querySelectorAll('a.mail').forEach(a=>{
     try{ navigator.clipboard.writeText(d).then(()=>{ a.title='Copiado'; }); }catch(_){}
   });
 });
+</script>
+<script>
+// Notas de lámina: etiqueta y nota se destacan juntas (cursor, foco o toque).
+(function(){
+  const todos=[...document.querySelectorAll('.nota[data-n], .ficha li[data-n]')];
+  const marca=(n,v)=>document.querySelectorAll('[data-n="'+n+'"]').forEach(e=>e.classList.toggle('sel',v));
+  const limpia=()=>document.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+  const tactil=()=>matchMedia('(hover: none)').matches;
+  todos.forEach(e=>{ const n=e.dataset.n;
+    e.addEventListener('pointerenter',ev=>{ if(ev.pointerType==='mouse') marca(n,true); });
+    e.addEventListener('pointerleave',ev=>{ if(ev.pointerType==='mouse') marca(n,false); });
+    e.addEventListener('focus',()=>marca(n,true)); e.addEventListener('blur',()=>marca(n,false));
+  });
+  document.querySelectorAll('.nota[data-n]').forEach(e=>e.addEventListener('click',ev=>{ ev.stopPropagation();
+    if(!tactil()) return;
+    const n=e.dataset.n; limpia(); marca(n,true);
+    document.querySelector('.ficha li[data-n="'+n+'"]')?.scrollIntoView({behavior:'smooth',block:'center'}); }));
+  document.querySelectorAll('.ficha li[data-n]').forEach(e=>e.addEventListener('click',()=>{ if(!tactil()) return;
+    const n=e.dataset.n, ya=e.classList.contains('sel'); limpia(); if(!ya) marca(n,true); }));
+})();
 </script>
 <script src="contacto.js"></script>
 </body>
