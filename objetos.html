@@ -6,37 +6,33 @@
 <style>
   /* Objetos gratuitos: misma cabecera y misma columna que las demás páginas. Mientras no haya vistas previas,
      el catálogo se lee como índice (nombre · categoría · material); con previas pasa a hoja de piezas del mismo tamaño. */
-  .pliego{max-width:1212px; margin:0 auto; min-height:100svh; display:grid; grid-template-rows:auto 1fr auto;
-          padding:2rem max(16px, env(safe-area-inset-right)) 1.5rem max(16px, env(safe-area-inset-left))}
-  main{padding:12svh 0 0 4rem}
-  .sub{display:flex; justify-content:space-between; gap:1rem; color:var(--dim); border-bottom:1px solid var(--ink); padding-bottom:.75rem}
+  main{padding:var(--aire) 0 0 var(--col)}
+  .sub{display:flex; justify-content:space-between; gap:1rem; color:var(--dim); border-bottom:var(--hilo); padding-bottom:.75rem}
   .filtros{display:flex; gap:1.5rem}
   .filtros a{cursor:pointer} .filtros a[aria-current]{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
-  .lista .obj{display:grid; grid-template-columns:minmax(0,1fr) 9rem 14rem; gap:1.5rem; padding:.75rem 0; border-bottom:1px solid var(--hair)}
+  .lista .obj{display:grid; grid-template-columns:minmax(0,1fr) 9rem 14rem; gap:1.5rem; padding:.75rem 0; border-bottom:var(--hilo)}
   .lista .c,.lista .m{color:var(--dim)}
   .hoja{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:2.5rem 1.75rem; padding-top:1.75rem}
-  .hoja .img{aspect-ratio:4/3; background:#f6f6f6; overflow:hidden}
+  .hoja .img{aspect-ratio:4/3; background:var(--soft); overflow:hidden}
   .hoja .img img{width:100%; height:100%; object-fit:cover}
   .hoja p{margin:.5rem 0 0; color:var(--dim)} .hoja p b{font-weight:normal; color:var(--ink)}
   .obj.abre{cursor:pointer}
-  .pie{border:0; padding:0 0 0 4rem; margin-top:6rem; color:var(--dim); font-size:12px}
-  .visor{position:fixed; inset:0; background:var(--paper); display:none; grid-template-rows:auto 1fr auto; padding:2rem 16px 1.5rem; z-index:5}
+  .dl{display:inline-block; margin-top:.35rem; font-size:var(--t2); color:var(--dim)} .obj.abre:hover .dl{color:var(--ink)}
+  .leyenda{margin:var(--cierre) 0 0; padding-left:var(--col); color:var(--dim); font-size:var(--t2)}
+  .visor{position:fixed; inset:0; background:var(--paper); display:none; grid-template-rows:auto 1fr auto; padding:2rem max(16px, env(safe-area-inset-right)) 2rem max(16px, env(safe-area-inset-left)); z-index:5}
   .visor.abierto{display:grid}
   .visor .cab,.visor .bajo{max-width:1180px; width:100%; margin:0 auto; display:flex; justify-content:space-between; color:var(--dim)}
   .visor .cab{padding-bottom:.75rem} .visor .bajo{padding-top:.75rem}
-  .visor model-viewer{width:100%; height:100%; background:#fafafa; --poster-color:#fafafa}
+  .visor model-viewer{width:100%; height:100%; background:var(--soft); --poster-color:#f6f6f6}
   .visor .bajo a{color:var(--ink); margin-left:1.5rem; text-decoration:underline; text-underline-offset:4px}
   .visor #cerrar{color:var(--ink); cursor:pointer; padding:.4rem 0}
   @media (max-width:600px){
-    main{padding:8svh 0 0 0}
-    .pie{padding-left:0}
     .lista .obj{grid-template-columns:minmax(0,1fr) auto}
     .lista .c{display:none}
   }
-  .dl{display:inline-block; margin-top:.35rem; font-size:11px; color:#8a8a8a; letter-spacing:.02em} .obj.abre:hover .dl{color:#111}
 </style></head>
 <body>
-<div class="pliego">
+<div class="pliego fijo">
   <header class="v">
     <h1>Stephanie Forno</h1>
     <a class="home" href="index.html" title="Inicio"><b>6.51</b></a>
@@ -46,7 +42,7 @@
     <div class="sub"><nav class="filtros" id="filtros"></nav><span>descarga libre</span></div>
     <div id="campo"></div>
   </main>
-  <p class="pie">Modelos propios, elaborados en Blender. Formato GLB (Blender, Rhino y visores 3D).<br>
+  <p class="leyenda">Modelos propios, elaborados en Blender. Formato GLB (Blender, Rhino y visores 3D).<br>
      Uso libre en proyectos académicos y profesionales, citando 6.51. No se permite revender los modelos.</p>
 </div>
 

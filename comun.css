@@ -1,50 +1,81 @@
-/* Hoja común del sitio (15-11). B/N, una sola fuente, tres tamaños: 13 (texto y cabecera), 12 (rótulos), 11 (marcas).
-   Todas las páginas (portada, objetos, cuadernos, info) cargan esta hoja DESPUÉS de su estilo propio. */
-:root{ --ink:#111; --dim:#595959; --hair:#d9d9d9; --paper:#fff; --font:"Helvetica Neue", Helvetica, Arial, sans-serif; }
+/* Hoja común del sitio (revisión final 15-11). Todo cuelga de unas pocas medidas:
+   tipografía  13 (texto) · 12 (rótulos, notas, índice) · 18 (la marca «6.51»)
+   grises      --ink texto y trazo · --dim texto secundario · --hair toda línea (un solo hilo de 1 px) · --soft solo fondo de objetos
+   aire        --aire antes del contenido · --cierre antes del pie · 2rem arriba y abajo de la página
+   retícula    borde = cabecera, hilos e índice · columna (--col) = contenido, texto del pie y láminas (simétricas a ambos lados)
+   Las páginas cargan esta hoja ANTES de su estilo propio, que solo dice lo que es de esa página. */
+:root{
+  --ink:#111; --dim:#595959; --hair:#d0d0d0; --soft:#f6f6f6; --paper:#fff;
+  --font:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  --t:13px; --t2:12px; --marca:18px;
+  --hilo:1px solid var(--hair);
+  --aire:12svh; --cierre:8svh; --col:4rem;
+}
+@media (max-width:600px){ :root{ --aire:8svh; --col:0px; } }
+
 *{box-sizing:border-box}
-html,body{margin:0; background:var(--paper); color:var(--ink); font:13px/1.5 var(--font); letter-spacing:.01em; -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%}
+html,body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--font); font-size:var(--t); line-height:1.5; letter-spacing:.01em; -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%}
 a{color:inherit; text-decoration:none}
-a:hover{color:#000; text-decoration:underline; text-underline-offset:4px}
+a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
 .dim{color:var(--dim)}
 svg{display:block; overflow:visible}
-.g{fill:none; stroke:#222; stroke-width:1.2; vector-effect:non-scaling-stroke; stroke-linejoin:miter}
-.h{fill:none; stroke:#bdbdbd; stroke-width:.6; vector-effect:non-scaling-stroke}
-.s{stroke:#d0d0d0; stroke-width:.6; vector-effect:non-scaling-stroke}
-
-/* cabecera: idéntica en las cinco páginas (6.51 · nombre · menú) */
-.pliego{padding-top:2rem}
-header{display:grid; grid-template-columns:3rem 1fr auto; gap:1rem; position:relative; align-items:baseline; font-size:13px}
-header b{font-weight:700}
 h1{font:inherit; margin:0}
-.menu{justify-self:end; color:var(--dim); white-space:nowrap}
+
+/* página: mismos márgenes en todas; .fijo = una pantalla con el pie abajo */
+.pliego{position:relative; max-width:1212px; margin:0 auto;
+        padding:2rem max(16px, env(safe-area-inset-right)) 2rem max(16px, env(safe-area-inset-left))}
+.pliego.fijo{min-height:100svh; display:grid; grid-template-rows:auto 1fr auto}
+
+/* cabecera: «6.51» centrado es el inicio; nombre a la izquierda y menú a la derecha */
+header{display:grid; grid-template-columns:1fr auto 1fr; column-gap:1rem; align-items:center; position:relative}
+header h1{grid-column:1; grid-row:1}
+header .home{grid-column:2; grid-row:1; justify-self:center; display:block; padding:.35rem .9rem}
+header .home b{font-size:var(--marca); line-height:1.2; letter-spacing:.02em}
+.menu{grid-column:3; grid-row:1; justify-self:end; margin:0; color:var(--dim); white-space:nowrap}
 .menu a{display:inline-block; padding:.4rem 0}
-.menu a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
-.menu a[aria-current]{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
+.menu a:hover,.menu a[aria-current]{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
 @media (max-width:600px){
-  header{grid-template-columns:2.5rem 1fr}
-  .menu{grid-column:2; justify-self:start; margin-top:0}
+  header{grid-template-columns:1fr auto; row-gap:.35rem}
+  header .home{grid-column:1/-1; grid-row:1}
+  header h1{grid-column:1; grid-row:2}
+  .menu{grid-column:2; grid-row:2}
 }
 
-/* pie de los cuadernos: una regla, el nombre del caso y su vecino */
-.pie{border-top:1px solid var(--ink); padding-top:.75rem; font-size:13px; line-height:1.5}
-.pie .cita,.pie .rotulo,.pie .vuelta{font-size:12px; color:var(--dim)}
+/* enlace subrayado en el texto: el hilo es el mismo gris */
+.dato a,.registro a{text-decoration:underline; text-decoration-color:var(--hair); text-underline-offset:4px}
+.dato a:hover,.registro a:hover{text-decoration-color:var(--ink)}
+
+/* índice de proyectos: cierra portada e info */
+.indice{border-top:var(--hilo); padding-top:.9rem; margin-top:var(--cierre); display:flex; gap:.4rem 3rem; flex-wrap:wrap; font-size:var(--t2)}
+.indice div{display:flex; gap:1.25rem; flex-wrap:wrap}
+
+/* pie: un hilo, el nombre del caso en la columna y su vecino a la derecha */
+.pie{display:grid; grid-template-columns:var(--col) 1fr auto; border-top:var(--hilo); padding-top:.75rem; margin-top:var(--cierre)}
+.pie .cita,.pie .rotulo,.pie .vuelta{font-size:var(--t2); color:var(--dim)}
 .pie a:hover{color:var(--ink)}
-.mejora{font-size:12px; letter-spacing:.01em; margin-top:.75rem}
-.mejora button{color:var(--dim)}
-.mejora button:hover,.mejora button[aria-pressed="true"]{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
-.nota span{width:230px; font-size:12px; color:var(--dim)}
-.nota span b{color:var(--ink)}
-.visor .cerrar{top:.5rem; right:2px; padding:14px; font-size:13px; color:var(--ink)}
+@media (max-width:600px){ .pie{grid-template-columns:1fr; row-gap:1rem} .pie>span:empty{display:none} }
 
-/* cabecera A (15-11): «6.51» centrado es el inicio; nombre a la izquierda y menú a la derecha */
-header.v{grid-template-columns:1fr auto 1fr; align-items:center}
-header.v h1{grid-column:1; grid-row:1}
-header.v .home{grid-column:2; grid-row:1; justify-self:center; display:block; padding:.35rem .9rem}
-header.v .menu{grid-column:3; grid-row:1; justify-self:end; margin:0}
-header.v .home b{font-size:18px; line-height:1.2; letter-spacing:.02em}
-@media (max-width:600px){
-  header.v{grid-template-columns:1fr auto; row-gap:.35rem}
-  header.v .home{grid-column:1/-1; grid-row:1}
-  header.v h1{grid-column:1; grid-row:2}
-  header.v .menu{grid-column:2; grid-row:2; margin:0}
-}
+/* cuadernos (ONEMI, CPC, Casa): lámina en la columna, simétrica; la burbuja y su visor */
+.cuaderno{overflow-x:hidden}
+figure{margin:0}
+.cuaderno figure{position:relative; z-index:1}
+.burbuja{width:calc(100% - 2*var(--col)); margin-inline:auto; -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; cursor:zoom-in}
+.burbuja canvas{display:block; width:100%; height:auto}
+header + .burbuja{margin-top:var(--aire)}
+.cuaderno .visor{position:fixed; inset:0; background:var(--paper); z-index:10; display:none; cursor:grab; touch-action:none}
+.cuaderno .visor.abierto{display:block}
+.cuaderno .visor canvas{display:block; width:100%; height:100%}
+.cuaderno .visor .cerrar{position:absolute; top:.5rem; right:2px; padding:14px; color:var(--ink); cursor:pointer}
+
+/* etiquetas numeradas: la palabra y la fuente en clave aparecen al pasar o tocar */
+.nota{position:absolute; width:18px; height:18px; margin:-9px 0 0 -9px; border:1px solid var(--dim); border-radius:50%; background:var(--paper);
+      font:var(--t2)/16px var(--font); text-align:center; color:var(--dim); cursor:pointer; opacity:.7; transition:opacity .25s, border-color .25s, color .25s}
+.nota::after{content:""; position:absolute; inset:-9px}
+.nota:hover,.nota.sel,.nota.abierta,.nota:focus-visible{opacity:1; border-color:var(--ink); color:var(--ink); outline:none}
+.nota span{display:none; position:absolute; left:24px; top:-6px; white-space:nowrap; padding:5px 8px; background:var(--paper); border:var(--hilo);
+           font:var(--t2)/1.4 var(--font); letter-spacing:.03em; text-align:left; color:var(--dim); z-index:3}
+.nota.der span{left:auto; right:24px}
+.nota:hover span,.nota.abierta span,.nota.sel span,.nota:focus-visible span{display:block}
+.nota span b{font-weight:400; color:var(--ink); margin-right:.45rem}
+.nota span a,.nota span i{font-style:normal; color:var(--dim); text-decoration:none}
+.nota span a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
