@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>objetos · 6.51</title>
+<link rel="stylesheet" href="comun.css">
+<script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+  /* Objetos gratuitos: misma cabecera y misma columna que las demás páginas. Mientras no haya vistas previas,
+     el catálogo se lee como índice (nombre · categoría · material); con previas pasa a hoja de piezas del mismo tamaño. */
+  .pliego{max-width:1212px; margin:0 auto; min-height:100svh; display:grid; grid-template-rows:auto 1fr auto;
+          padding:2rem max(16px, env(safe-area-inset-right)) 1.5rem max(16px, env(safe-area-inset-left))}
+  main{padding:12svh 0 0 4rem}
+  .sub{display:flex; justify-content:space-between; gap:1rem; color:var(--dim); border-bottom:1px solid var(--ink); padding-bottom:.75rem}
+  .filtros{display:flex; gap:1.5rem}
+  .filtros a{cursor:pointer} .filtros a[aria-current]{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
+  .lista .obj{display:grid; grid-template-columns:minmax(0,1fr) 9rem 14rem; gap:1.5rem; padding:.75rem 0; border-bottom:1px solid var(--hair)}
+  .lista .c,.lista .m{color:var(--dim)}
+  .hoja{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:2.5rem 1.75rem; padding-top:1.75rem}
+  .hoja .img{aspect-ratio:4/3; background:#f6f6f6; overflow:hidden}
+  .hoja .img img{width:100%; height:100%; object-fit:cover}
+  .hoja p{margin:.5rem 0 0; color:var(--dim)} .hoja p b{font-weight:normal; color:var(--ink)}
+  .obj.abre{cursor:pointer}
+  .pie{border:0; padding:0 0 0 4rem; margin-top:6rem; color:var(--dim); font-size:12px}
+  .visor{position:fixed; inset:0; background:var(--paper); display:none; grid-template-rows:auto 1fr auto; padding:2rem 16px 1.5rem; z-index:5}
+  .visor.abierto{display:grid}
+  .visor .cab,.visor .bajo{max-width:1180px; width:100%; margin:0 auto; display:flex; justify-content:space-between; color:var(--dim)}
+  .visor .cab{padding-bottom:.75rem} .visor .bajo{padding-top:.75rem}
+  .visor model-viewer{width:100%; height:100%; background:#fafafa; --poster-color:#fafafa}
+  .visor .bajo a{color:var(--ink); margin-left:1.5rem; text-decoration:underline; text-underline-offset:4px}
+  .visor #cerrar{color:var(--ink); cursor:pointer; padding:.4rem 0}
+  @media (max-width:600px){
+    main{padding:8svh 0 0 0}
+    .pie{padding-left:0}
+    .lista .obj{grid-template-columns:minmax(0,1fr) auto}
+    .lista .c{display:none}
+  }
+</style></head>
+<body>
+<div class="pliego">
+  <header>
+    <a href="index.html"><b>6.51</b></a>
+    <h1>Stephanie Forno</h1>
+    <span class="menu"><a href="objetos.html" aria-current="page">objetos</a> · <a href="cv.html">info</a> · <a href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51">contacto</a></span>
+  </header>
+  <main>
+    <div class="sub"><nav class="filtros" id="filtros"></nav><span>descarga libre</span></div>
+    <div id="campo"></div>
+  </main>
+  <p class="pie">Modelos propios, elaborados en Blender. Formato GLB (Blender, Rhino y visores 3D).<br>
+     Uso libre en proyectos académicos y profesionales, citando 6.51. No se permite revender los modelos.</p>
+</div>
+
+<div class="visor" id="visor">
+  <div class="cab"><span id="vn"></span><a id="cerrar">cerrar</a></div>
+  <model-viewer id="mv" camera-controls auto-rotate shadow-intensity=".4" exposure=".9" environment-image="neutral"></model-viewer>
+  <div class="bajo"><span id="vm"></span><span id="vd"></span></div>
+</div>
+
+<script src="catalogo.js"></script>
+<script>
+  // Mientras el productor entrega catalogo.json, la hoja muestra lo que viene. Para sumar un objeto basta una entrada.
+  const OBJETOS = window.CATALOGO || [
+    {id:'puerta', nombre:'puerta pivotante', categoria:'puertas', medidas:'—', materiales:'yakisugi · corten'},
+    {id:'celosia', nombre:'celosía de chapa', categoria:'exterior', medidas:'—', materiales:'chapa naval'},
+    {id:'macetero', nombre:'macetero escalonado', categoria:'exterior', medidas:'—', materiales:'corten'},
+    {id:'jarron', nombre:'jarrón', categoria:'casa', medidas:'—', materiales:'cerámica'},
+    {id:'lampara', nombre:'lámpara', categoria:'casa', medidas:'—', materiales:'—'},
+    {id:'alfombra', nombre:'alfombra', categoria:'casa', medidas:'—', materiales:'lana'},
+    {id:'bote', nombre:'bote de pesca artesanal', categoria:'sur', medidas:'—', materiales:'madera'},
+  ];
+  const CATS=['todo','casa','puertas','exterior','sur'];
+  let cat='todo';
+  const campo=document.getElementById('campo'), fil=document.getElementById('filtros');
+  const mat=o=>(o.materiales&&o.materiales!=='—')?o.materiales:'';
+  function pintar(){
+    fil.innerHTML=CATS.map(c=>`<a data-c="${c}"${c===cat?' aria-current="true"':''}>${c}</a>`).join('');
+    const lista=OBJETOS.filter(o=>cat==='todo'||o.categoria===cat), conImg=OBJETOS.some(o=>o.preview);
+    campo.className=conImg?'hoja':'lista';
+    campo.innerHTML=lista.map(o=> conImg
+      ? `<div class="obj${o.archivos?' abre':''}" data-id="${o.id}"><div class="img">${o.preview?`<img src="${o.preview}" alt="">`:''}</div><p><b>${o.nombre}</b><br>${mat(o)}</p></div>`
+      : `<div class="obj${o.archivos?' abre':''}" data-id="${o.id}"><span>${o.nombre}</span><span class="c">${o.categoria}</span><span class="m">${mat(o)}</span></div>`).join('');
+  }
+  fil.addEventListener('click',e=>{ const a=e.target.closest('a'); if(a){ cat=a.dataset.c; pintar(); } });
+  const visor=document.getElementById('visor'), mv=document.getElementById('mv');
+  campo.addEventListener('click',e=>{ const d=e.target.closest('.obj'); if(!d) return;
+    const o=OBJETOS.find(x=>x.id===d.dataset.id); if(!o.archivos) return;   // sin archivos aún: no abre
+    mv.src=o.archivos.find(a=>a.endsWith('.glb')); document.getElementById('vn').textContent=o.nombre;
+    document.getElementById('vm').textContent=[o.medidas!=='—'?o.medidas:'',mat(o)].filter(Boolean).join(' · ');
+    document.getElementById('vd').innerHTML=o.archivos.map(a=>`<a href="${a}" download>${a.split('.').pop()}</a>`).join('');
+    visor.classList.add('abierto'); });
+  document.getElementById('cerrar').addEventListener('click',()=>visor.classList.remove('abierto'));
+  addEventListener('keydown',e=>{ if(e.key==='Escape') visor.classList.remove('abierto'); });
+  pintar();
+</script>
+</body></html>
