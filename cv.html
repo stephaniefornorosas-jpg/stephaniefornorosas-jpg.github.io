@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CV · 6.51</title>
+<meta name="description" content="Stephanie Forno, arquitecta. 6.51.">
+<meta name="author" content="Stephanie Forno">
+<style>
+  /* CV en el mismo silencio que el resto: una ficha, sin adjetivos. */
+  :root{ --ink:#111; --dim:#6b6b6b; --rule:#e4e4e4; --paper:#fff; --font:"Helvetica Neue", Helvetica, Arial, sans-serif; }
+  *{box-sizing:border-box}
+  html,body{margin:0; background:var(--paper); color:var(--ink)}
+  body{font-family:var(--font); font-size:11px; letter-spacing:.02em; line-height:1.55; -webkit-font-smoothing:antialiased}
+  a{color:inherit; text-decoration:none}
+  a:hover{text-decoration:underline; text-underline-offset:3px}
+  .pliego{max-width:1180px; margin:0 auto; min-height:100svh; display:grid; grid-template-rows:auto 1fr auto;
+          padding:1.5rem max(16px, env(safe-area-inset-right)) 1.25rem max(16px, env(safe-area-inset-left))}
+  header{display:grid; grid-template-columns:3rem 1fr auto; gap:1rem; position:relative}
+  header .mail{position:absolute; left:50%; top:0; transform:translateX(-50%)}
+  h1{font:inherit; margin:0}
+  main{align-self:center; display:grid; grid-template-columns:3rem minmax(0,34rem); gap:1rem; padding:12svh 0}
+  dl{margin:0; display:grid; grid-template-columns:9rem 1fr; column-gap:1.5rem; row-gap:.45rem}
+  dt{color:var(--dim)}
+  dd{margin:0}
+  .sep{grid-column:1/-1; border-top:1px solid var(--rule); margin:.6rem 0}
+  footer{display:grid; grid-template-columns:3rem 1fr; gap:1rem; color:var(--dim); font-size:10px}
+  @media (max-width:600px){ header,main,footer{grid-template-columns:2.5rem 1fr} header .mail{left:auto; right:0; transform:none}
+                            dl{grid-template-columns:1fr} dt{margin-top:.6rem} }
+</style>
+</head>
+<body>
+<div class="pliego">
+  <header>
+    <a href="index.html" title="Inicio"><b>6.51</b></a>
+    <h1>Stephanie Forno</h1>
+    <a class="mail" href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51" title="stephaniefornorosas@gmail.com">Contacto</a>
+  </header>
+
+  <main>
+    <span></span>
+    <dl>
+      <dt>Título</dt><dd>Arquitecta, Universidad de Los Lagos, 2020</dd>
+      <dt>Trayectoria</dt><dd>5 años en el sector público</dd>
+      <dt>Formación</dt><dd>Certified Archicad BIM Training I &amp; II (Archisoft, Graphisoft partner)<br>
+                            Diplomado en Gestión del Patrimonio Cultural Inmueble, Universidad de Chile, 2024</dd>
+      <dt>Publicación</dt><dd>CPC, Coihuín · Cuadernos del Quehacer N.º 05, ULagos, 2024</dd>
+      <dd class="sep"></dd>
+      <dt>Hago</dt><dd>Planimetría y láminas<br>Modelos BIM en Archicad<br>Objetos GDL<br>Visualización</dd>
+    </dl>
+  </main>
+
+  <footer>
+    <span></span>
+    <a href="index.html">&larr; Inicio</a>
+  </footer>
+</div>
+<script>
+// Contacto: el primer clic muestra y copia la dirección; el segundo abre el correo.
+document.querySelectorAll('a.mail').forEach(a=>{
+  a.addEventListener('click',e=>{
+    if(a.dataset.abierto) return;
+    e.preventDefault(); a.dataset.abierto='1';
+    const d='stephaniefornorosas@gmail.com';
+    a.textContent=d;
+    try{ navigator.clipboard.writeText(d).then(()=>{ a.title='Copiado'; }); }catch(_){}
+  });
+});
+</script>
+</body>
+</html>
