@@ -33,6 +33,7 @@
     .lista .obj{grid-template-columns:minmax(0,1fr) auto}
     .lista .c{display:none}
   }
+  .dl{display:inline-block; margin-top:.35rem; font-size:11px; color:#8a8a8a; letter-spacing:.02em} .obj.abre:hover .dl{color:#111}
 </style></head>
 <body>
 <div class="pliego">
@@ -76,8 +77,8 @@
     const lista=OBJETOS.filter(o=>cat==='todo'||o.categoria===cat), conImg=OBJETOS.some(o=>o.preview);
     campo.className=conImg?'hoja':'lista';
     campo.innerHTML=lista.map(o=> conImg
-      ? `<div class="obj${o.archivos?' abre':''}" data-id="${o.id}"><div class="img">${o.preview?`<img src="${o.preview}" alt="">`:''}</div><p><b>${o.nombre}</b><br>${mat(o)}</p></div>`
-      : `<div class="obj${o.archivos?' abre':''}" data-id="${o.id}"><span>${o.nombre}</span><span class="c">${o.categoria}</span><span class="m">${mat(o)}</span></div>`).join('');
+      ? `<div class="obj${o.archivos?' abre':''}" data-id="${o.id}"><div class="img">${o.preview?`<img src="${o.preview}" alt="">`:''}</div><p><b>${o.nombre}</b><br>${mat(o)}${o.peso?`<br><span class="dl">ver y descargar · glb ${o.peso}</span>`:''}</p></div>`
+      :`<div class="obj${o.archivos?' abre':''}" data-id="${o.id}"><span>${o.nombre}</span><span class="c">${o.categoria}</span><span class="m">${mat(o)}</span></div>`).join('');
   }
   fil.addEventListener('click',e=>{ const a=e.target.closest('a'); if(a){ cat=a.dataset.c; pintar(); } });
   const visor=document.getElementById('visor'), mv=document.getElementById('mv');
