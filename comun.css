@@ -35,3 +35,16 @@ h1{font:inherit; margin:0}
 .nota span{width:230px; font-size:12px; color:var(--dim)}
 .nota span b{color:var(--ink)}
 .visor .cerrar{top:.5rem; right:2px; padding:14px; font-size:13px; color:var(--ink)}
+
+/* cabecera A (15-11): «6.51» centrado es el inicio; nombre a la izquierda y menú a la derecha */
+header.v{grid-template-columns:1fr auto 1fr; align-items:center}
+header.v h1{grid-column:1; grid-row:1}
+header.v .home{grid-column:2; grid-row:1; justify-self:center; display:block; padding:.35rem .9rem}
+header.v .menu{grid-column:3; grid-row:1; justify-self:end; margin:0}
+header.v .home b{font-size:18px; line-height:1.2; letter-spacing:.02em}
+@media (max-width:600px){
+  header.v{grid-template-columns:1fr auto; row-gap:.35rem}
+  header.v .home{grid-column:1/-1; grid-row:1}
+  header.v h1{grid-column:1; grid-row:2}
+  header.v .menu{grid-column:2; grid-row:2; margin:0}
+}
