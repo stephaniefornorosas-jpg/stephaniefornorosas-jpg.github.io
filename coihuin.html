@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coihuín, 2020 · 6.51</title>
+<meta name="description" content="Centro Productivo Comunitario, Coihuín, 2020. 6.51 · Stephanie Forno, arquitecta.">
+<meta name="author" content="Stephanie Forno">
+<style>
+  /* La planta 2020 queda como recuerdo, en gris. Un solo eje, N, baja, gira en la inflexión
+     y se posa sobre la maqueta: el decante en 3D. */
+  :root{ --ink:#111; --dim:#6b6b6b; --paper:#fff; --font:"Helvetica Neue", Helvetica, Arial, sans-serif; }
+  *{box-sizing:border-box}
+  html,body{margin:0; background:var(--paper); color:var(--ink)}
+  body{font-family:var(--font); font-size:11px; letter-spacing:.02em; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  a{color:inherit; text-decoration:none}
+  a:hover{text-decoration:underline; text-underline-offset:3px}
+  .dim{color:var(--dim)}
+  .pliego{position:relative; max-width:1180px; margin:0 auto;
+          padding:1.5rem max(16px, env(safe-area-inset-right)) 1.25rem max(16px, env(safe-area-inset-left))}
+  header{display:grid; grid-template-columns:3rem 1fr auto; gap:1rem; position:relative}
+  header .mail{position:absolute; left:50%; top:0; transform:translateX(-50%)}
+  h1{font:inherit; margin:0}
+  figure{margin:0; position:relative; z-index:1}
+  /* burbuja: la base muestra solo lo más oscuro; la lupa deja ver la lámina nítida */
+  .burbuja{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none; cursor:zoom-in}
+  .burbuja canvas{display:block; width:100%; height:auto}
+  .planta{margin-top:12svh}
+  .giro{height:14svh}
+  .maqueta{width:84%; margin:0 auto}
+  .visor{position:fixed; inset:0; background:var(--paper); z-index:10; display:none; cursor:grab; touch-action:none}
+  .visor.abierto{display:block}
+  .visor canvas{display:block; width:100%; height:100%}
+  .visor .cerrar{position:absolute; top:1.5rem; right:max(16px, env(safe-area-inset-right)); font-size:11px; color:var(--dim); cursor:pointer}
+  .pie{display:grid; grid-template-columns:3rem 1fr auto; gap:1rem; border-top:1px solid var(--ink); padding-top:.5rem; margin-top:8svh; font-size:13px}
+  .pie .cita{font-size:11px}
+  .pie .rotulo{font-size:11px}
+  svg.ejes{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; overflow:visible}
+  svg.ejes polyline{fill:none; stroke:var(--ink); stroke-opacity:.38; stroke-width:.6}
+  svg.ejes circle{fill:var(--ink); fill-opacity:.5}
+  @media (max-width:600px){ header,.pie{grid-template-columns:2.5rem 1fr} header .mail{left:auto; right:0; transform:none}
+                            .pie .vuelta{grid-column:2} .maqueta{width:100%} }
+</style>
+</head>
+<body>
+<div class="pliego" id="pliego">
+  <header>
+    <a href="index.html" title="Inicio"><b>6.51</b></a>
+    <h1>Stephanie Forno</h1>
+    <a class="mail" href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51" title="stephaniefornorosas@gmail.com">Contacto</a>
+  </header>
+
+  <figure class="planta burbuja" id="planta" data-base="burbuja/p0.jpg" data-nitida="burbuja/p1.jpg" data-ratio="0.4984"
+          role="img" aria-label="Planta de arquitectura del Centro Productivo Comunitario de Coihuín, 2020"><canvas></canvas></figure>
+  <div class="giro" aria-hidden="true"></div>
+  <figure class="maqueta burbuja" id="maqueta" data-modo="encender" data-base="burbuja/m0.jpg" data-nitida="burbuja/m1.jpg" data-ratio="0.5625"
+          role="img" aria-label="Maqueta del Centro Productivo Comunitario de Coihuín, vista axonométrica"><canvas></canvas></figure>
+
+  <div class="pie">
+    <span></span>
+    <span>CPC, Coihuín, 2020<br><a class="cita dim" href="https://sites.google.com/ulagos.cl/cuadernosarq/inicio" target="_blank" rel="noopener">CQ N°05 · ULagos ↗</a></span>
+    <a class="vuelta dim rotulo" href="index.html">&larr; Inicio</a>
+  </div>
+  <svg class="ejes" id="ejes" aria-hidden="true"></svg>
+</div>
+<div class="visor" id="visor" aria-hidden="true"><canvas></canvas><span class="cerrar">cerrar ✕</span></div>
+
+<script>
+// Eje N de la lámina 12 (2020): 57,284 % del tramo A→U, abajo de la planta.
+const N=57.284;
+const PL={x0:.057, span:.884};                          // A y U en el ancho de planta.jpg
+const LOMO={a:[.28,.853], u:[.72,.204]};                 // A y U sobre el lomo de la maqueta (cuerpo.jpg)
+function dibujar(){
+  const box=document.getElementById('pliego').getBoundingClientRect();
+  const pl=document.getElementById('planta').getBoundingClientRect();
+  const mq=document.getElementById('maqueta').getBoundingClientRect();
+  if(!pl.height||!mq.height) return;
+  const ox=box.left, oy=box.top, t=N/100;
+  const y0=pl.bottom-oy, yi=y0+(mq.top-pl.bottom)*.45;  // la inflexión
+  const xp=pl.left-ox+pl.width*(PL.x0+PL.span*t);
+  const xm=mq.left-ox+mq.width*(LOMO.a[0]+(LOMO.u[0]-LOMO.a[0])*t);
+  const ym=mq.top-oy+mq.height*(LOMO.a[1]+(LOMO.u[1]-LOMO.a[1])*t);
+  document.getElementById('ejes').innerHTML=
+    `<polyline points="${xp},${y0} ${xp},${yi} ${xm},${ym}"/><circle cx="${xm}" cy="${ym}" r="1.6"/>`;
+}
+addEventListener('load',dibujar); addEventListener('resize',dibujar);
+
+// Burbuja: se dibuja en canvas (no hay <img> que guardar). Al pasar el cursor, una lupa redonda
+// muestra la lámina nítida; al hacer clic se abre entera, con zoom (rueda o pellizco) y arrastre.
+const cargar=src=>new Promise(r=>{const i=new Image(); i.onload=()=>r(i); i.src=src;});
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('.burbuja,.visor')) e.preventDefault(); });
+document.querySelectorAll('.burbuja').forEach(async fig=>{
+  const cv=fig.querySelector('canvas'), cx=cv.getContext('2d');
+  const [base,nit]=await Promise.all([cargar(fig.dataset.base),cargar(fig.dataset.nitida)]);
+  let lupa=null, luz=0, meta=0, anim=0;
+  const encender=fig.dataset.modo==='encender';      // la maqueta no usa lupa: se enciende entera
+  function pintar(){
+    const w=fig.clientWidth, dpr=devicePixelRatio||1, h=w*Number(fig.dataset.ratio);
+    if(cv.width!==Math.round(w*dpr)){ cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr); cv.style.height=h+'px'; dibujar(); }
+    cx.setTransform(dpr,0,0,dpr,0,0);
+    cx.clearRect(0,0,w,h); cx.drawImage(base,0,0,w,h);
+    if(encender){ if(luz>0){ cx.globalAlpha=luz; cx.drawImage(nit,0,0,w,h); cx.globalAlpha=1; } return; }
+    if(!lupa) return;
+    const r=Math.max(70,Math.min(150,w*.11)), z=1.6;
+    cx.save(); cx.beginPath(); cx.arc(lupa.x,lupa.y,r,0,7); cx.clip();
+    cx.fillStyle='#fff'; cx.fillRect(lupa.x-r,lupa.y-r,2*r,2*r);
+    cx.drawImage(nit, lupa.x-lupa.x*z, lupa.y-lupa.y*z, w*z, h*z);
+    cx.restore();
+    cx.beginPath(); cx.arc(lupa.x,lupa.y,r,0,7); cx.strokeStyle='rgba(17,17,17,.25)'; cx.lineWidth=.5; cx.stroke();
+  }
+  function fundido(){                                 // ~0,7 s hacia encendido o apagado
+    luz+=Math.sign(meta-luz)*Math.min(Math.abs(meta-luz),.035); pintar();
+    anim = luz!==meta ? requestAnimationFrame(fundido) : 0;
+  }
+  fig.addEventListener('pointerenter',e=>{ if(!encender||e.pointerType!=='mouse') return; meta=1; if(!anim) fundido(); });
+  fig.addEventListener('pointermove',e=>{ if(encender||e.pointerType!=='mouse') return;
+    const b=cv.getBoundingClientRect(); lupa={x:e.clientX-b.left,y:e.clientY-b.top}; pintar(); });
+  fig.addEventListener('pointerleave',()=>{ lupa=null; meta=0; if(encender){ if(!anim) fundido(); } else pintar(); });
+  fig.addEventListener('click',()=>abrir(nit));
+  addEventListener('resize',pintar); pintar();
+});
+
+const visor=document.getElementById('visor'), vc=visor.querySelector('canvas'), vx=vc.getContext('2d');
+let img=null, esc=1, px=0, py=0, arr=null;
+function verVisor(){
+  const dpr=devicePixelRatio||1, W=innerWidth, H=innerHeight;
+  vc.width=W*dpr; vc.height=H*dpr; vx.setTransform(dpr,0,0,dpr,0,0);
+  vx.fillStyle='#fff'; vx.fillRect(0,0,W,H);
+  vx.drawImage(img,px,py,img.width*esc,img.height*esc);
+}
+function abrir(i){
+  img=i; esc=Math.min(innerWidth*.94/i.width, innerHeight*.9/i.height);
+  px=(innerWidth-i.width*esc)/2; py=(innerHeight-i.height*esc)/2;
+  visor.classList.add('abierto'); verVisor();
+}
+function cerrar(){ visor.classList.remove('abierto'); }
+visor.querySelector('.cerrar').addEventListener('click',cerrar);
+addEventListener('keydown',e=>{ if(e.key==='Escape') cerrar(); });
+visor.addEventListener('wheel',e=>{ e.preventDefault();
+  const f=Math.exp(-e.deltaY*.0015), n=Math.min(4,Math.max(.2,esc*f)), f2=n/esc;
+  px=e.clientX-(e.clientX-px)*f2; py=e.clientY-(e.clientY-py)*f2; esc=n; verVisor(); },{passive:false});
+const toques=new Map(); let dist0=0;
+visor.addEventListener('pointerdown',e=>{ if(e.target.classList.contains('cerrar')) return;
+  visor.setPointerCapture(e.pointerId); toques.set(e.pointerId,e); arr={x:e.clientX-px,y:e.clientY-py};
+  if(toques.size===2){ const [a,b]=[...toques.values()]; dist0=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)/esc; } });
+visor.addEventListener('pointermove',e=>{ if(!toques.has(e.pointerId)) return; toques.set(e.pointerId,e);
+  if(toques.size===2){ const [a,b]=[...toques.values()], d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+    const cxm=(a.clientX+b.clientX)/2, cym=(a.clientY+b.clientY)/2, n=Math.min(4,Math.max(.2,d/dist0)), f2=n/esc;
+    px=cxm-(cxm-px)*f2; py=cym-(cym-py)*f2; esc=n; }
+  else if(arr){ px=e.clientX-arr.x; py=e.clientY-arr.y; }
+  verVisor(); });
+['pointerup','pointercancel'].forEach(t=>visor.addEventListener(t,e=>{ toques.delete(e.pointerId); if(!toques.size) arr=null; }));
+addEventListener('resize',()=>{ if(visor.classList.contains('abierto')) verVisor(); });
+</script>
+<script>
+// Contacto: muchos equipos no tienen programa de correo. El primer clic muestra y copia la dirección;
+// el segundo abre el correo.
+document.querySelectorAll('a.mail').forEach(a=>{
+  a.addEventListener('click',e=>{
+    if(a.dataset.abierto) return;
+    e.preventDefault(); a.dataset.abierto='1';
+    const d='stephaniefornorosas@gmail.com';
+    a.textContent=d;
+    try{ navigator.clipboard.writeText(d).then(()=>{ a.title='Copiado'; }); }catch(_){}
+  });
+});
+</script>
+</body>
+</html>
