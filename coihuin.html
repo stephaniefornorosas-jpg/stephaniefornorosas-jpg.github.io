@@ -40,6 +40,27 @@
   svg.ejes circle{fill:var(--ink); fill-opacity:.5}
   @media (max-width:600px){ header,.pie{grid-template-columns:2.5rem 1fr} header .mail{left:auto; right:0; transform:none}
                             .pie .vuelta{grid-column:2} .maqueta{width:100%} }
+
+
+
+
+
+
+  /* cota: navegación. Una línea de cota de 6,51 con marcas a 45°; cada marca es un portal. */
+  .cota{position:relative; height:30px; margin:.9rem auto 0; max-width:1180px; width:100%}
+  .cota::before{content:""; position:absolute; left:0; right:0; top:11px; border-top:1px solid #cfcfcf; transform:scaleY(.5); transform-origin:top}
+  .cota .total{position:absolute; left:50%; top:0; transform:translate(-50%,-3px); padding:0 6px; background:var(--paper); color:#b3b3b3; font-size:9px; letter-spacing:.06em}
+  .cota a{position:absolute; top:0; height:30px; min-width:44px; display:flex; flex-direction:column; align-items:center; color:#a8a8a8; font-size:9.5px; text-decoration:none}
+  .cota a::before{content:""; width:9px; height:1px; background:currentColor; margin-top:11px; transform:rotate(-45deg)}
+  .cota a span{margin-top:6px; white-space:nowrap}
+  .cota a:hover, .cota a[aria-current]{color:#444}
+  .cota a.ini{align-items:flex-start; transform:translateX(-4px)}
+  .cota a.fin{align-items:flex-end; transform:translateX(4px)}
+  .cota a.medio{transform:translateX(-50%)}
+  .cota a[title="Datos"] span{font-size:12px; margin-top:3px}
+  .cota a.mail{color:var(--ink); font-size:10px}
+  .cota a.mail::before{width:12px}
+  /* fin cota */
 </style>
 </head>
 <body>
@@ -47,9 +68,14 @@
   <header>
     <a href="index.html" title="Inicio"><b>6.51</b></a>
     <h1>Stephanie Forno</h1>
-    <a class="mail" href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51" title="stephaniefornorosas@gmail.com">Contacto</a>
-    <a class="dim" href="cv.html">CV</a>
   </header>
+  <nav class="cota" aria-label="Páginas">
+    <a class="ini" style="left:0.000%" href="index.html"><span>Inicio</span></a>
+    <a class="medio" style="left:33.333%" href="coihuin.html" aria-current="page"><span>CPC</span></a>
+    <a class="medio" style="left:66.667%" href="cv.html" title="Datos" aria-label="Datos"><span>ⓘ</span></a>
+    <a class="mail fin" style="right:0" href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51"><span>Contacto</span></a>
+    <span class="total" aria-hidden="true">6,51</span>
+  </nav>
 
   <figure class="planta burbuja" id="planta" data-base="burbuja/p0.jpg" data-nitida="burbuja/p1.jpg" data-ratio="0.4984"
           role="img" aria-label="Planta de arquitectura del Centro Productivo Comunitario de Coihuín, 2020"><canvas></canvas></figure>
@@ -161,7 +187,7 @@ document.querySelectorAll('a.mail').forEach(a=>{
     if(a.dataset.abierto) return;
     e.preventDefault(); a.dataset.abierto='1';
     const d='stephaniefornorosas@gmail.com';
-    a.textContent=d;
+    (a.querySelector('span')||a).textContent=d;
     try{ navigator.clipboard.writeText(d).then(()=>{ a.title='Copiado'; }); }catch(_){}
   });
 });

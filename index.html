@@ -12,7 +12,7 @@
   *{box-sizing:border-box}
   html,body{margin:0; background:var(--paper); color:var(--ink)}
   body{font-family:var(--font); font-size:11px; letter-spacing:.02em; -webkit-font-smoothing:antialiased;
-       min-height:100svh; display:grid; grid-template-rows:auto 1fr auto;
+       min-height:100svh; display:grid; grid-template-rows:auto auto 1fr auto;
        padding:1.5rem max(16px, env(safe-area-inset-right)) 1.25rem max(16px, env(safe-area-inset-left))}
   a{color:inherit; text-decoration:none}
   header{display:grid; grid-template-columns:3rem 1fr auto; gap:1rem; position:relative; max-width:1180px; width:100%; margin:0 auto}
@@ -20,6 +20,7 @@
   b{font-weight:700}
   h1{font:inherit; margin:0}
 
+  body>*{min-width:0}
   main{align-self:center; width:100%; max-width:1180px; margin:0 auto}
   .linea{display:block; position:relative; overflow-x:auto; scrollbar-width:none}
   .linea::-webkit-scrollbar{display:none}
@@ -46,18 +47,52 @@
   @media (prefers-reduced-motion: reduce){ .trazo .corte polyline{animation:none; stroke-dashoffset:0} }
   @media (max-width:600px){ header{grid-template-columns:2.5rem 1fr} header .mail{left:auto; right:0; transform:none}
                             footer{grid-template-columns:2.5rem 1fr} }
+
+
+
+
+
+
+  /* cota: navegación. Una línea de cota de 6,51 con marcas a 45°; cada marca es un portal. */
+  .cota{position:relative; height:30px; margin:.9rem auto 0; max-width:1180px; width:100%}
+  .cota::before{content:""; position:absolute; left:0; right:0; top:11px; border-top:1px solid #cfcfcf; transform:scaleY(.5); transform-origin:top}
+  .cota .total{position:absolute; left:50%; top:0; transform:translate(-50%,-3px); padding:0 6px; background:var(--paper); color:#b3b3b3; font-size:9px; letter-spacing:.06em}
+  .cota a{position:absolute; top:0; height:30px; min-width:44px; display:flex; flex-direction:column; align-items:center; color:#a8a8a8; font-size:9.5px; text-decoration:none}
+  .cota a::before{content:""; width:9px; height:1px; background:currentColor; margin-top:11px; transform:rotate(-45deg)}
+  .cota a span{margin-top:6px; white-space:nowrap}
+  .cota a:hover, .cota a[aria-current]{color:#444}
+  .cota a.ini{align-items:flex-start; transform:translateX(-4px)}
+  .cota a.fin{align-items:flex-end; transform:translateX(4px)}
+  .cota a.medio{transform:translateX(-50%)}
+  .cota a[title="Datos"] span{font-size:12px; margin-top:3px}
+  .cota a.mail{color:var(--ink); font-size:10px}
+  .cota a.mail::before{width:12px}
+  /* fin cota */
+  /* celular: el corte gira 90° y baja por la pantalla, como una cota vertical */
+  @media (max-width:600px){
+    main{position:relative; height:72svh}
+    .vertical{position:absolute; left:50%; top:0; width:72svh; transform-origin:0 0; transform:rotate(90deg) translate(0,-50%)}
+    .linea{overflow:visible}
+    .trazo{min-width:0}
+  }  .trazo .nivel{display:none}   /* minimalismo: el suelo del trazo ya es el ±0,00 */
 </style>
 </head>
 <body>
 <header>
   <span><b>6.51</b></span>
   <h1>Stephanie Forno</h1>
-  <a class="mail" href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51" title="stephaniefornorosas@gmail.com">Contacto</a>
-    <a class="dim" href="cv.html">CV</a>
 </header>
+  <nav class="cota" aria-label="Páginas">
+    <a class="ini" style="left:0.000%" href="index.html" aria-current="page"><span>Inicio</span></a>
+    <a class="medio" style="left:33.333%" href="coihuin.html"><span>CPC</span></a>
+    <a class="medio" style="left:66.667%" href="cv.html" title="Datos" aria-label="Datos"><span>ⓘ</span></a>
+    <a class="mail fin" style="right:0" href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51"><span>Contacto</span></a>
+    <span class="total" aria-hidden="true">6,51</span>
+  </nav>
 
 <main>
-  <div class="marca"><span>A</span><span>A'</span></div>
+  <div class="vertical">
+  <div class="marca" aria-hidden="true"></div>
   <a class="linea" href="coihuin.html" aria-label="Entrar al proyecto: CPC, Coihuín, 2020">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3800 228" class="trazo" role="img" aria-label="Corte longitudinal del CPC de Coihuín, 2020">
 <line class="nivel" x1="0" y1="80.6" x2="3800" y2="80.6"/>
@@ -980,8 +1015,9 @@
 <polyline pathLength="1" style="--t:0.978" points="3724.5,111.1 3714.5,93.6"/>
 <polyline pathLength="1" style="--t:0.978" points="3724.5,111.1 3716.1,129.1"/>
 </g></svg>
-    <div class="cotas"><span style="top:35.42%">&#9660; +3,00</span><span style="top:66.67%">&#9660; ±0,00</span><span style="top:92.71%">&#9660; -2,50</span></div>
+    <div class="cotas"><span style="top:66.67%">&#9660; ±0,00</span></div>
   </a>
+  </div>
 </main>
 
 <footer>
@@ -996,7 +1032,7 @@ document.querySelectorAll('a.mail').forEach(a=>{
     if(a.dataset.abierto) return;
     e.preventDefault(); a.dataset.abierto='1';
     const d='stephaniefornorosas@gmail.com';
-    a.textContent=d;
+    (a.querySelector('span')||a).textContent=d;
     try{ navigator.clipboard.writeText(d).then(()=>{ a.title='Copiado'; }); }catch(_){}
   });
 });
