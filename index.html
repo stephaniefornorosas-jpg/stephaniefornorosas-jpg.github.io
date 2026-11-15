@@ -34,6 +34,14 @@
   .ley{font-size:11px}
   .pieza svg{height:88px}
   .dato{font-size:12px}
+
+  /* 15-11: contacto y objetos gdl en negrita subrayada, mismo tamaño; arquitectura · BIM en gris; instagram solo ícono */
+  .servicio{font-size:var(--t1, 13px)}
+  .servicio a{font-weight:700; text-decoration:underline; text-decoration-color:var(--ink); text-underline-offset:4px}
+  main > p.dim{font-size:var(--t1, 13px); color:#8a8a8a}
+  .ig svg{display:block} .ig svg *{fill:none; stroke:var(--ink); stroke-width:1.4} .ig svg .pto{fill:var(--ink); stroke:none}
+  .ig{display:inline-block; padding:.4rem; opacity:.75} .ig:hover{opacity:1; text-decoration:none}
+  .pieza svg path.relleno{fill:var(--ink); stroke:var(--ink); stroke-width:1.2; stroke-linejoin:round}
 </style></head>
 <body>
 <div class="pliego fijo">
@@ -45,7 +53,7 @@
   <main>
     <p class="dim">arquitectura · BIM</p>
     <p class="servicio"><a href="mailto:stephaniefornorosas@gmail.com?subject=Consulta%206.51">contacto</a><span>·</span><a href="objetos.html">objetos gdl</a></p>
-    <p class="dato"><a href="https://www.instagram.com/6.51__/" target="_blank" rel="noopener">instagram</a></p>
+    <p class="dato"><a class="ig" href="https://www.instagram.com/6.51__/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r=".9" class="pto"/></svg></a></p>
     <div class="pieza">
       <a id="ir"><svg id="g" viewBox="0 0 10 10"><line id="s"/><path id="p"/></svg></a>
       <p class="ley" id="ley"></p>
@@ -65,7 +73,7 @@
   const g=document.getElementById('g'), p=document.getElementById('p'), s=document.getElementById('s'),
         ley=document.getElementById('ley'), fl=document.getElementById('fl');
   function ver(k){ i=(k+GESTOS.length)%GESTOS.length; const x=GESTOS[i];
-    g.setAttribute('viewBox',x.vb); p.setAttribute('d',x.d);
+    g.setAttribute('viewBox',x.vb); p.setAttribute('d',x.d); p.classList.toggle('relleno', !!x.relleno);
     s.setAttribute('x1',x.suelo[0]); s.setAttribute('x2',x.suelo[2]); s.setAttribute('y1',x.suelo[1]); s.setAttribute('y2',x.suelo[1]);
     ley.textContent=x.a;
     const ir=document.getElementById('ir');   // pinchar el corte abre el cuaderno del proyecto, si ya existe
