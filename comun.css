@@ -87,3 +87,6 @@ header a:focus-visible{color:var(--ink); outline:1px solid var(--ink); outline-o
 /* «6.51» = inicio: en las interiores lleva un hilo fijo (no solo al pasar el cursor; en el celular no hay hover) */
 header:has(.volver) .home b{text-decoration:underline; text-decoration-color:var(--hair); text-underline-offset:4px}
 header:has(.volver) .home:hover b{text-decoration-color:var(--ink)}
+
+/* nombre fuera de la vista (15-11): sigue para lectores de pantalla y buscadores; aparece al pinchar contacto */
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}

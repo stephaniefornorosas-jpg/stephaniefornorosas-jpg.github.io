@@ -8,7 +8,7 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
     if (a.dataset.abierto) return;
     e.preventDefault(); a.dataset.abierto = '1';
     const d = a.getAttribute('href').slice(7).split('?')[0];
-    a.textContent = d + ' · copiado';
+    a.textContent = 'Stephanie Forno · ' + d + ' · copiado';
     try { navigator.clipboard.writeText(d); } catch (_) {}
     clearTimeout(t); t = setTimeout(cerrar, 3000);
   });
