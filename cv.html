@@ -44,6 +44,8 @@
   .menu a[href="cv.html"]{color:var(--ink); text-decoration:underline; text-underline-offset:4px}
   .menu{justify-self:end; color:#8a8a8a; white-space:nowrap} .menu a:hover{color:#111; text-decoration:none}
   @media (max-width:600px){ .menu{grid-column:1/-1; justify-self:start; margin-top:.35rem} }
+  .indice{border-top:1px solid var(--hair); padding-top:.9rem; margin-top:8svh; display:flex; gap:3rem; flex-wrap:wrap; font-size:12px}
+  .indice div{display:flex; gap:1.25rem; flex-wrap:wrap} .indice a{color:var(--ink)}
 </style>
 <link rel="stylesheet" href="comun.css">
 <meta property="og:type" content="website">
@@ -68,12 +70,15 @@
       <dt>Arquitecta</dt><dd>ULagos, 2020</dd>
       <dt>Sector público</dt><dd>5 años</dd>
       <dt>Formación</dt><dd>Certified Archicad BIM Training I &amp; II<br>Diplomado en Patrimonio, U. de Chile</dd>
-      <dt>Publicación</dt><dd><a href="coihuin.html">CQ N.º 05, 2024</a></dd>
+      <dt>Publicación</dt><dd><a href="onemi.html">CQ N.º 01, 2020</a> · <a href="coihuin.html">CQ N.º 05, 2024</a></dd>
       <dd class="sep"></dd>
       <dt>Servicios</dt><dd>Modelado BIM · GDL · Láminas · Visualización</dd>
     </dl>
   </main>
-
+  <nav class="indice" aria-label="Proyectos">
+    <div><span class="dim">universitarios</span><a href="onemi.html">ONEMI, 2018</a><a href="coihuin.html">CPC, 2020</a></div>
+    <div><span class="dim">particulares</span><a href="casa.html">Casa, 2024</a></div>
+  </nav>
 </div>
 <script>
 // Contacto: el primer clic muestra y copia la dirección; el segundo abre el correo.
@@ -87,5 +92,6 @@ document.querySelectorAll('a.mail').forEach(a=>{
   });
 });
 </script>
+<script src="contacto.js"></script>
 </body>
 </html>
