@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stephaniefornorosas-jpg.github.io/sitemap.xml
